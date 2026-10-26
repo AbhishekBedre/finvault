@@ -3,18 +3,35 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#f5f6fa">
+<meta name="theme-color" content="#f5f6fa" id="themeColor">
+<meta name="application-name" content="FinVault">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="FinVault">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <title>FinVault — Personal Financial Vault</title>
+<script>try{var t=localStorage.getItem('finvault_theme')||'light';var d=t==='dark'||(t==='auto'&&matchMedia('(prefers-color-scheme: dark)').matches);document.documentElement.dataset.theme=d?'dark':'light';}catch(e){}</script>
 <style>
-:root{--bg:#f5f6fa;--panel:#fff;--ink:#182033;--muted:#788196;--line:#e8ebf2;--accent:#4169e1;--shadow:0 14px 40px rgba(31,45,80,.08)}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}button,input,textarea,select{font:inherit}button{cursor:pointer;border:0}button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid #9bb2ff;outline-offset:2px}
-.hidden{display:none!important}.screen{min-height:100dvh;display:grid;place-items:center;padding:22px}.auth{width:min(440px,100%);background:var(--panel);border:1px solid var(--line);border-radius:28px;padding:30px;box-shadow:var(--shadow);animation:rise .45s ease both}.brand{display:flex;align-items:center;gap:12px;font-weight:800;font-size:22px;letter-spacing:-.5px}.logo{width:44px;height:44px;border-radius:15px;display:grid;place-items:center;background:linear-gradient(135deg,#4169e1,#8b5cf6);color:#fff;font-size:22px;box-shadow:0 8px 20px #4169e144}.auth h1{font-size:28px;letter-spacing:-.8px;margin:28px 0 8px}.sub{color:var(--muted);margin:0 0 24px}.field{display:grid;gap:7px;margin:14px 0}.field label{font-size:13px;font-weight:700;color:#525d73}.field input,.field textarea,.field select,.search{width:100%;border:1px solid var(--line);background:#fbfcff;border-radius:12px;padding:12px 13px;color:var(--ink)}.field textarea{min-height:100px;resize:vertical}.primary{background:var(--accent);color:white;border-radius:12px;padding:12px 16px;font-weight:700;box-shadow:0 7px 18px #4169e12e;transition:transform .18s,filter .18s}.primary:hover{filter:brightness(1.06);transform:translateY(-1px)}.secondary{background:#eef1f8;color:#3c4760;border-radius:11px;padding:10px 13px;font-weight:650}.text-btn{background:transparent;color:var(--accent);font-weight:700;padding:8px}.auth-actions{display:grid;gap:10px;margin-top:20px}.notice{font-size:12px;color:var(--muted);line-height:1.55;margin-top:18px}.error{color:#c3324b;font-size:13px;margin-top:10px}
-#app{min-height:100dvh}.topbar{height:76px;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(16px,4vw,52px);background:#ffffffd9;backdrop-filter:blur(18px);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}.top-actions{display:flex;gap:9px;align-items:center}.avatar{width:38px;height:38px;border-radius:13px;background:#e7ebff;color:#4169e1;display:grid;place-items:center;font-weight:800}.layout{max-width:1440px;margin:auto;padding:30px clamp(16px,4vw,52px) 60px;display:grid;grid-template-columns:220px minmax(0,1fr);gap:30px}.sidebar{display:flex;flex-direction:column;gap:6px;align-self:start;position:sticky;top:100px}.navbtn{display:flex;gap:11px;align-items:center;text-align:left;padding:12px 13px;background:transparent;color:#667087;border-radius:13px;font-weight:650}.navbtn.active,.navbtn:hover{background:#e9edff;color:#3559d8}.nav-icon{font-size:18px;width:23px;text-align:center}.side-label{font-size:11px;text-transform:uppercase;letter-spacing:1.1px;color:#a0a7b7;font-weight:800;margin:20px 12px 7px}.main{min-width:0}.welcome{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:25px}.welcome h1{font-size:clamp(25px,3vw,34px);letter-spacing:-1px;margin:0 0 7px}.welcome p{margin:0;color:var(--muted)}.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-bottom:26px}.stat{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:0 5px 20px #283a6505}.stat-top{display:flex;justify-content:space-between;color:var(--muted);font-size:13px}.stat strong{display:block;font-size:26px;letter-spacing:-.8px;margin-top:10px}.stat-icon{font-size:20px}.tools{display:flex;gap:10px;align-items:center;margin:0 0 17px}.search-wrap{flex:1;position:relative}.search{padding-left:42px;background:#fff}.search-symbol{position:absolute;left:14px;top:10px;font-size:18px;color:#929aab}.chips{display:flex;gap:8px;overflow:auto;padding:2px 0 14px;scrollbar-width:thin}.chip{white-space:nowrap;border:1px solid var(--line);background:#fff;color:#69738a;border-radius:99px;padding:8px 13px;font-size:13px;font-weight:700}.chip.active{background:#202b46;color:#fff;border-color:#202b46}.section-head{display:flex;align-items:center;justify-content:space-between;margin:10px 0 14px}.section-head h2{font-size:18px;margin:0}.count{font-size:12px;color:var(--muted)}.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.entry{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:18px;min-width:0;position:relative;overflow:hidden;box-shadow:0 6px 24px #283a6507;animation:rise .32s ease both;transition:transform .2s,box-shadow .2s}.entry:hover{transform:translateY(-3px);box-shadow:var(--shadow)}.entry::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--card-color,#4169e1)}.entry-head{display:flex;align-items:center;justify-content:space-between;gap:8px}.category-tag{font-size:11px;font-weight:800;padding:6px 9px;border-radius:99px;background:color-mix(in srgb,var(--card-color,#4169e1) 12%,white);color:var(--card-color,#4169e1);white-space:nowrap}.entry-menu{background:transparent;color:#9299aa;font-size:20px;padding:2px 5px}.entry h3{margin:17px 0 5px;font-size:17px;overflow-wrap:anywhere}.entry .institution{color:var(--muted);font-size:13px;margin:0 0 14px;overflow-wrap:anywhere}.detail-list{display:grid;gap:9px;border-top:1px solid var(--line);padding-top:13px}.detail-row{display:flex;justify-content:space-between;gap:12px;font-size:12px}.detail-row span:first-child{color:var(--muted)}.detail-row span:last-child{font-weight:650;text-align:right;overflow-wrap:anywhere;max-width:65%}.entry-footer{display:flex;justify-content:space-between;gap:8px;margin-top:16px}.mini-btn{background:#f1f3f8;color:#58637a;border-radius:9px;padding:7px 10px;font-size:12px;font-weight:700}.empty{grid-column:1/-1;text-align:center;padding:54px 18px;background:#fff;border:1px dashed #d9deea;border-radius:20px;color:var(--muted)}.empty .big{font-size:35px;margin-bottom:10px}.empty strong{display:block;color:var(--ink);font-size:17px;margin-bottom:6px}
-.modal-backdrop{position:fixed;inset:0;background:#141b2b7a;backdrop-filter:blur(5px);display:grid;place-items:center;padding:16px;z-index:20;animation:fade .18s ease}.modal{width:min(590px,100%);max-height:min(90dvh,850px);overflow:auto;background:#fff;border-radius:24px;padding:24px;box-shadow:0 30px 100px #10172a55;animation:rise .25s ease}.modal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}.modal-head h2{margin:0;font-size:22px}.close{background:#f0f2f7;border-radius:10px;width:36px;height:36px;font-size:20px}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}.span2{grid-column:1/-1}.modal-actions{display:flex;justify-content:flex-end;gap:9px;margin-top:20px}.color-options{display:flex;gap:10px;flex-wrap:wrap}.swatch{width:28px;height:28px;border-radius:50%;border:3px solid white;box-shadow:0 0 0 1px #d6dbe7}.swatch.selected{box-shadow:0 0 0 3px #25314d}.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#202b46;color:#fff;padding:12px 18px;border-radius:13px;z-index:40;box-shadow:var(--shadow);animation:rise .2s ease;max-width:90vw}.security{background:#f7f8fc;border-radius:13px;padding:12px;color:#68738a;font-size:12px;line-height:1.5;margin-top:14px}.danger{background:#fff0f1;color:#bf3147;border-radius:10px;padding:10px 12px;font-weight:700}.lock-screen{text-align:center}.lock-screen .logo{margin:auto}.footer-note{font-size:11px;color:#9aa2b2;margin-top:28px;text-align:center}
+:root{--bg:#f5f6fa;--panel:#fff;--ink:#182033;--muted:#788196;--line:#e8ebf2;--accent:#4169e1;--field:#fbfcff;--soft:#eef1f8;--soft-ink:#3c4760;--mini:#f1f3f8;--mini-ink:#58637a;--nav-hover:#e9edff;--nav-ink:#3559d8;--nav-text:#667087;--chip:#fff;--chip-ink:#69738a;--chip-on:#202b46;--chip-on-ink:#fff;--shadow:0 14px 40px rgba(31,45,80,.08);--backdrop:#141b2b7a;--toast:#202b46;--danger-bg:#fff0f1;--danger-ink:#bf3147;--sec:#f7f8fc;--warn-bg:#fff6e5;--warn-ink:#9a6204;--warn-line:#f6dfae;--bad-bg:#fff0f1;--bad-ink:#c3324b;--dash:#d9deea;--label:#525d73;color-scheme:light}
+:root[data-theme=dark]{--bg:#000;--panel:#0d0e12;--ink:#eceef5;--muted:#8d94a7;--line:#23262f;--accent:#5b7cf5;--field:#14161c;--soft:#1a1d25;--soft-ink:#c9cfdf;--mini:#1a1d25;--mini-ink:#b5bdd0;--nav-hover:#14192b;--nav-ink:#8fa8ff;--nav-text:#8d94a7;--chip:#0d0e12;--chip-ink:#9aa2b6;--chip-on:#eceef5;--chip-on-ink:#000;--shadow:0 14px 40px rgba(0,0,0,.7);--backdrop:#000000b8;--toast:#2a2e3b;--danger-bg:#2a1217;--danger-ink:#ff8d9d;--sec:#12141a;--warn-bg:#241b08;--warn-ink:#f2c566;--warn-line:#4a3711;--bad-bg:#2a1217;--bad-ink:#ff8d9d;--dash:#2b2f3a;--label:#aab2c5;color-scheme:dark}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;-webkit-tap-highlight-color:transparent;transition:background .2s,color .2s}button,input,textarea,select{font:inherit}button{cursor:pointer;border:0}button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid #9bb2ff;outline-offset:2px}
+.hidden{display:none!important}.screen{min-height:100dvh;display:grid;place-items:center;padding:22px}.auth{width:min(440px,100%);background:var(--panel);border:1px solid var(--line);border-radius:28px;padding:30px;box-shadow:var(--shadow);animation:rise .45s ease both}.brand{display:flex;align-items:center;gap:12px;font-weight:800;font-size:22px;letter-spacing:-.5px}.logo{width:44px;height:44px;border-radius:15px;display:grid;place-items:center;background:linear-gradient(135deg,#4169e1,#8b5cf6);color:#fff;font-size:22px;box-shadow:0 8px 20px #4169e144}.auth h1{font-size:28px;letter-spacing:-.8px;margin:28px 0 8px}.sub{color:var(--muted);margin:0 0 24px}.field{display:grid;gap:7px;margin:14px 0}.field label{font-size:13px;font-weight:700;color:var(--label)}.field input,.field textarea,.field select,.search{width:100%;border:1px solid var(--line);background:var(--field);border-radius:12px;padding:12px 13px;color:var(--ink)}.field textarea{min-height:100px;resize:vertical}.primary{background:var(--accent);color:#fff;border-radius:12px;padding:12px 16px;font-weight:700;box-shadow:0 7px 18px #4169e12e;transition:transform .18s,filter .18s}.primary:hover{filter:brightness(1.06);transform:translateY(-1px)}.secondary{background:var(--soft);color:var(--soft-ink);border-radius:11px;padding:10px 13px;font-weight:650}.text-btn{background:transparent;color:var(--accent);font-weight:700;padding:8px}.auth-actions{display:grid;gap:10px;margin-top:20px}.notice{font-size:12px;color:var(--muted);line-height:1.55;margin-top:18px}.error{color:var(--bad-ink);font-size:13px;margin-top:10px}.hint{font-size:11px;color:var(--muted)}
+#app{min-height:100dvh}.topbar{position:fixed;top:0;left:0;right:0;z-index:10;height:calc(68px + env(safe-area-inset-top));padding:env(safe-area-inset-top) clamp(16px,4vw,52px) 0;display:flex;align-items:center;justify-content:space-between;gap:10px;background:color-mix(in srgb,var(--panel) 90%,transparent);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}.top-actions{display:flex;gap:9px;align-items:center}.icon-btn{position:relative;background:var(--soft);color:var(--soft-ink);border-radius:11px;width:42px;height:40px;font-size:17px}.icon-btn .badge{position:absolute;top:-5px;right:-5px;margin:0}button.avatar{cursor:pointer}.back{margin-bottom:16px}.layout{max-width:1440px;margin:auto;padding:calc(68px + env(safe-area-inset-top) + 26px) clamp(16px,4vw,52px) 60px}.sidebar{display:flex;flex-direction:column;gap:6px;align-self:start;position:sticky;top:26px}.side-brand{padding:4px 12px 18px}.navbtn{display:flex;gap:11px;align-items:center;text-align:left;width:100%;padding:12px 13px;background:transparent;color:var(--nav-text);border-radius:13px;font-weight:650}.navbtn.active,.navbtn:hover{background:var(--nav-hover);color:var(--nav-ink)}.nav-icon{font-size:18px;width:23px;text-align:center}.badge{margin-left:auto;background:#e5484d;color:#fff;border-radius:99px;font-size:11px;padding:1px 7px;font-weight:800}.side-label{font-size:11px;text-transform:uppercase;letter-spacing:1.1px;color:#8d94a7;font-weight:800;margin:20px 12px 7px}.main{min-width:0}.welcome{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:25px}.welcome h1{font-size:clamp(25px,3vw,34px);letter-spacing:-1px;margin:0 0 7px}.welcome p{margin:0;color:var(--muted)}.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-bottom:26px}.stat{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:18px}.stat-top{display:flex;justify-content:space-between;color:var(--muted);font-size:13px}.stat strong{display:block;font-size:26px;letter-spacing:-.8px;margin-top:10px}.stat-icon{font-size:20px}.tools{display:flex;gap:10px;align-items:center;margin:0 0 17px}.search-wrap{flex:1;position:relative}.search{padding-left:42px;background:var(--panel)}.search-symbol{position:absolute;left:14px;top:10px;font-size:18px;color:#929aab}.chips{display:flex;gap:8px;overflow:auto;padding:2px 0 14px;scrollbar-width:thin}.chip{white-space:nowrap;border:1px solid var(--line);background:var(--chip);color:var(--chip-ink);border-radius:99px;padding:8px 13px;font-size:13px;font-weight:700}.chip.active{background:var(--chip-on);color:var(--chip-on-ink);border-color:var(--chip-on)}.section-head{display:flex;align-items:center;justify-content:space-between;margin:10px 0 14px}.section-head h2{font-size:18px;margin:0}.count{font-size:12px;color:var(--muted)}.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.entry{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:18px;min-width:0;position:relative;overflow:hidden;animation:rise .32s ease both;transition:transform .2s,box-shadow .2s}.entry:hover{transform:translateY(-3px);box-shadow:var(--shadow)}.entry::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--card-color,#4169e1)}.entry-head{display:flex;align-items:center;justify-content:space-between;gap:8px}.category-tag{font-size:11px;font-weight:800;padding:6px 9px;border-radius:99px;background:color-mix(in srgb,var(--card-color,#4169e1) 16%,transparent);color:var(--card-color,#4169e1);white-space:nowrap}.entry-menu{background:transparent;color:#9299aa;font-size:20px;padding:2px 5px}.entry h3{margin:17px 0 5px;font-size:17px;overflow-wrap:anywhere}.entry .institution{color:var(--muted);font-size:13px;margin:0 0 14px;overflow-wrap:anywhere}.detail-list{display:grid;gap:9px;border-top:1px solid var(--line);padding-top:13px}.detail-row{display:flex;justify-content:space-between;gap:12px;font-size:12px}.detail-row span:first-child{color:var(--muted)}.detail-row span:last-child{font-weight:650;text-align:right;overflow-wrap:anywhere;max-width:65%}.entry-footer{display:flex;justify-content:space-between;gap:8px;margin-top:16px}.mini-btn{background:var(--mini);color:var(--mini-ink);border-radius:9px;padding:7px 10px;font-size:12px;font-weight:700}.empty{grid-column:1/-1;text-align:center;padding:54px 18px;background:var(--panel);border:1px dashed var(--dash);border-radius:20px;color:var(--muted)}.empty .big{font-size:35px;margin-bottom:10px}.empty strong{display:block;color:var(--ink);font-size:17px;margin-bottom:6px}
+.due-banner{display:flex;align-items:center;gap:12px;justify-content:space-between;background:var(--warn-bg);color:var(--warn-ink);border:1px solid var(--warn-line);border-radius:16px;padding:12px 16px;margin-bottom:18px;font-weight:650}
+.rem{display:flex;gap:14px;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:14px 16px;margin-bottom:10px;animation:rise .3s ease both}.rem-date{width:56px;text-align:center;border-radius:13px;background:var(--soft);padding:7px 0;flex:none}.rem-date b{display:block;font-size:20px;line-height:1.1}.rem-date span{font-size:11px;text-transform:uppercase;color:var(--muted);font-weight:700}.rem-body{flex:1;min-width:0}.rem-body strong{overflow-wrap:anywhere}.rem-sub{color:var(--muted);font-size:12px;overflow-wrap:anywhere}.pill{font-size:11px;font-weight:800;padding:5px 9px;border-radius:99px;white-space:nowrap;background:var(--soft);color:var(--soft-ink)}.pill.over{background:var(--bad-bg);color:var(--bad-ink)}.pill.soon{background:var(--warn-bg);color:var(--warn-ink)}.rem-actions{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.panels{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:start}.panel{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:20px}.panel h3{margin:0 0 12px;font-size:16px}.panel p{margin:8px 0;color:var(--muted);font-size:13px}.profile-head{display:flex;gap:14px;align-items:center;margin-bottom:6px}.avatar{width:38px;height:38px;border-radius:13px;background:var(--nav-hover);color:var(--nav-ink);display:grid;place-items:center;font-weight:800}.avatar.big{width:58px;height:58px;font-size:24px;border-radius:19px}.seg{display:flex;background:var(--soft);border-radius:13px;padding:4px;gap:4px}.seg button{flex:1;background:transparent;color:var(--soft-ink);border-radius:10px;padding:9px;font-weight:700}.seg button.active{background:var(--accent);color:#fff}.btn-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.modal-backdrop{position:fixed;inset:0;background:var(--backdrop);backdrop-filter:blur(5px);display:grid;place-items:center;padding:16px;z-index:20;animation:fade .18s ease}.modal{width:min(590px,100%);max-height:min(90dvh,850px);overflow:auto;background:var(--panel);border:1px solid var(--line);border-radius:24px;padding:24px;box-shadow:0 30px 100px #10172a55;animation:rise .25s ease}.modal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}.modal-head h2{margin:0;font-size:22px;overflow-wrap:anywhere}.close{background:var(--soft);color:var(--soft-ink);border-radius:10px;width:36px;height:36px;font-size:20px;flex:none}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}.span2{grid-column:1/-1}.modal-actions{display:flex;justify-content:flex-end;gap:9px;margin-top:20px}.color-options{display:flex;gap:10px;flex-wrap:wrap}.swatch{width:28px;height:28px;border-radius:50%;border:3px solid var(--panel);box-shadow:0 0 0 1px var(--line)}.swatch.selected{box-shadow:0 0 0 3px var(--ink)}.toast{position:fixed;bottom:max(24px,env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);background:var(--toast);color:#fff;padding:12px 18px;border-radius:13px;z-index:40;box-shadow:var(--shadow);animation:rise .2s ease;max-width:90vw}.security{background:var(--sec);border-radius:13px;padding:12px;color:var(--muted);font-size:12px;line-height:1.5;margin-top:14px}.danger{background:var(--danger-bg);color:var(--danger-ink);border-radius:10px;padding:10px 12px;font-weight:700}.footer-note{font-size:11px;color:#8d94a7;margin-top:28px;text-align:center}
+.pw-wrap{position:relative}.pw-wrap input{padding-right:46px}.eye{position:absolute;right:6px;top:50%;transform:translateY(-50%);background:transparent;font-size:16px;padding:6px 8px;border-radius:8px;color:var(--muted)}
+.vrow{display:grid;grid-template-columns:1fr auto;gap:2px 10px;padding:10px 0;border-bottom:1px solid var(--line);align-items:center}.vl{color:var(--muted);font-size:12px;grid-column:1/-1}.vv{font-weight:650;overflow-wrap:anywhere;font-size:14px}.vb{display:flex;gap:6px}
 @keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}@keyframes fade{from{opacity:0}to{opacity:1}}
-@media(max-width:1100px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.layout{grid-template-columns:190px minmax(0,1fr);gap:20px}}
-@media(max-width:760px){.topbar{height:66px}.layout{display:block;padding-top:22px}.sidebar{position:static;flex-direction:row;overflow:auto;margin:0 -2px 22px;padding-bottom:5px}.navbtn{white-space:nowrap;padding:10px 12px}.navbtn .nav-icon{width:auto}.side-label{display:none}.stats{gap:9px}.stat{padding:13px}.stat strong{font-size:21px}.stat-top{font-size:11px}.cards{grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.entry{padding:14px;border-radius:17px}.entry h3{font-size:15px}.entry .institution{font-size:12px}.detail-row{font-size:11px}.welcome{align-items:center}.welcome .primary{padding:10px 12px}.tools{flex-wrap:wrap}.tools .secondary{white-space:nowrap}}
-@media(max-width:480px){.screen{padding:14px}.auth{padding:23px;border-radius:23px}.cards{grid-template-columns:1fr}.entry{padding:17px}.stats{grid-template-columns:repeat(3,minmax(0,1fr))}.stat strong{font-size:19px}.stat-icon{display:none}.form-grid{grid-template-columns:1fr}.span2{grid-column:auto}.modal{padding:19px;border-radius:20px}.welcome h1{font-size:25px}.welcome p{font-size:13px}.welcome .primary{font-size:13px}.top-actions .secondary{display:none}}
+@media(max-width:1100px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:900px){.panels{grid-template-columns:1fr}}
+@media(max-width:760px){.topbar{height:calc(60px + env(safe-area-inset-top))}.layout{padding-top:calc(60px + env(safe-area-inset-top) + 18px)}.stats{gap:9px}.stat{padding:13px}.stat strong{font-size:21px}.stat-top{font-size:11px}.cards{grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.entry{padding:14px;border-radius:17px}.entry h3{font-size:15px}.entry .institution{font-size:12px}.detail-row{font-size:11px}.welcome{align-items:center}.welcome .primary{padding:10px 14px}.tools{flex-wrap:wrap}.tools .secondary{white-space:nowrap}.rem{flex-wrap:wrap}.rem-actions{width:100%;justify-content:flex-start}}
+@media(max-width:560px){.topbar .brand span{display:none}.logo{width:38px;height:38px;font-size:19px}.top-actions{gap:6px}.top-actions .secondary{padding:9px 9px;font-size:12px}}
+@media(max-width:480px){.screen{padding:14px}.auth{padding:23px;border-radius:23px}.cards{grid-template-columns:1fr}.entry{padding:17px}.stats{grid-template-columns:repeat(3,minmax(0,1fr))}.stat strong{font-size:19px}.stat-icon{display:none}.form-grid{grid-template-columns:1fr}.span2{grid-column:auto}.modal{padding:19px;border-radius:20px}.welcome h1{font-size:25px}.welcome p{font-size:13px}.welcome .primary{font-size:13px}.due-banner{flex-direction:column;align-items:flex-start}}
 </style>
 </head>
 <body>
@@ -30,39 +47,36 @@
       <button class="primary" id="authSubmit" type="submit" style="width:100%">Create secure vault</button>
       <div class="error" id="authError" role="alert"></div>
     </form>
-    <div class="auth-actions"><button class="text-btn" id="switchAuth" type="button">Already registered? Sign in</button></div>
+    <div class="auth-actions"><button class="text-btn" id="switchAuth" type="button">Already registered? Sign in</button><button class="text-btn hidden" id="installAuth" type="button">⬇ Install app</button></div>
     <div class="security">🔐 Your records are encrypted with a key derived from your master password before being saved to this browser's IndexedDB. If you forget the password, the data cannot be recovered without a backup/key.</div>
-    <p class="notice">Use a unique, strong password. This demo stores data only in this browser profile. It does not send your records to a server.</p>
+    <p class="notice">Use a unique, strong password. Data is stored only in this browser profile (or installed app). It is never sent to a server.</p>
   </section>
 </div>
+
 <div id="app" class="hidden">
   <header class="topbar">
     <div class="brand"><div class="logo">✦</div><span>FinVault</span></div>
-    <div class="top-actions"><button class="secondary" id="exportBtn">Export backup</button><button class="secondary" id="lockBtn">Lock vault</button><div class="avatar" id="avatar">A</div></div>
+    <div class="top-actions"><button class="icon-btn" id="remBtn" type="button" aria-label="Reminders" title="Reminders">🔔<span class="badge hidden" id="remBadge">0</span></button><button class="secondary" id="exportBtn" type="button">Export backup</button><button class="secondary" id="lockBtn" type="button">Lock vault</button><button class="avatar" id="avatar" type="button" aria-label="Profile" title="Profile">A</button></div>
   </header>
   <div class="layout">
-    <nav class="sidebar" id="sidebar">
-      <button class="navbtn active" data-cat="All"><span class="nav-icon">▦</span> All entries</button>
-      <div class="side-label">Categories</div>
-      <button class="navbtn" data-cat="Credit cards"><span class="nav-icon">▣</span> Credit cards</button>
-      <button class="navbtn" data-cat="Debit cards"><span class="nav-icon">▤</span> Debit cards</button>
-      <button class="navbtn" data-cat="Netbanking"><span class="nav-icon">⌘</span> Netbanking</button>
-      <button class="navbtn" data-cat="FD details"><span class="nav-icon">◷</span> FD details</button>
-      <button class="navbtn" data-cat="BOND details"><span class="nav-icon">◇</span> BOND details</button>
-      <button class="navbtn" data-cat="Notes"><span class="nav-icon">▧</span> Notes</button>
-    </nav>
     <main class="main">
-      <div class="welcome"><div><h1 id="greeting">Good afternoon 👋</h1><p>All your important details, in one calm place.</p></div><button class="primary" id="addBtn">＋ Add entry</button></div>
-      <section class="stats">
-        <div class="stat"><div class="stat-top"><span>Total entries</span><span class="stat-icon">▦</span></div><strong id="totalStat">0</strong></div>
-        <div class="stat"><div class="stat-top"><span>Categories used</span><span class="stat-icon">◈</span></div><strong id="categoryStat">0</strong></div>
-        <div class="stat"><div class="stat-top"><span>Last updated</span><span class="stat-icon">◷</span></div><strong id="updatedStat" style="font-size:17px">—</strong></div>
+      <button class="secondary back hidden" id="backBtn" type="button">← Back</button>
+      <section id="vaultView">
+        <div class="welcome"><div><h1 id="greeting">Good afternoon 👋</h1><p>All your important details, in one calm place.</p></div><button class="primary" id="addBtn">＋ Add</button></div>
+        <div id="dueBanner"></div>
+        <section class="stats">
+          <div class="stat"><div class="stat-top"><span>Total entries</span><span class="stat-icon">▦</span></div><strong id="totalStat">0</strong></div>
+          <div class="stat"><div class="stat-top"><span>Categories used</span><span class="stat-icon">◈</span></div><strong id="categoryStat">0</strong></div>
+          <div class="stat"><div class="stat-top"><span>Last updated</span><span class="stat-icon">◷</span></div><strong id="updatedStat" style="font-size:17px">—</strong></div>
+        </section>
+        <div class="tools"><div class="search-wrap"><span class="search-symbol">⌕</span><input id="searchInput" class="search" type="search" placeholder="Search across all entries…" autocomplete="off"></div><button class="secondary" id="sortBtn">Recently updated ↓</button></div>
+        <div class="chips" id="chips"></div>
+        <div class="section-head"><h2 id="listTitle">All entries</h2><span class="count" id="entryCount">0 entries</span></div>
+        <div class="cards" id="cards"></div>
       </section>
-      <div class="tools"><div class="search-wrap"><span class="search-symbol">⌕</span><input id="searchInput" class="search" type="search" placeholder="Search across all entries…" autocomplete="off"></div><button class="secondary" id="sortBtn">Recently updated ↓</button></div>
-      <div class="chips" id="chips"></div>
-      <div class="section-head"><h2 id="listTitle">All entries</h2><span class="count" id="entryCount">0 entries</span></div>
-      <div class="cards" id="cards"></div>
-      <p class="footer-note">FinVault · Stored locally in this browser · Keep an encrypted backup somewhere safe</p>
+      <section id="remindersView" class="hidden"></section>
+      <section id="profileView" class="hidden"></section>
+      <p class="footer-note">FinVault · Stored locally on this device · Keep an encrypted backup somewhere safe</p>
     </main>
   </div>
 </div>
@@ -72,80 +86,290 @@
 (() => {
 'use strict';
 const DB_NAME='finvault_local_v1', STORE='vaults', VAULT_ID='primary';
-const CATEGORIES=['Credit cards','Debit cards','Netbanking','FD details','BOND details','Notes'];
-const CATEGORY_META={
- 'Credit cards':{icon:'▣',color:'#5376e8'},
- 'Debit cards':{icon:'▤',color:'#16a085'},
- 'Netbanking':{icon:'⌘',color:'#8b5cf6'},
- 'FD details':{icon:'◷',color:'#e39a35'},
- 'BOND details':{icon:'◇',color:'#df5c83'},
- 'Notes':{icon:'▧',color:'#64748b'}
-};
-const PALETTE=['#5376e8','#16a085','#8b5cf6','#e39a35','#df5c83','#64748b','#0f9fba','#d45535','#44546a','#4c9b55'];
-let db, records=[], key=null, vaultMeta=null, userName='there', currentCategory='All', sortNewest=true, editingId=null, authMode='register', lastUpdated=0;
 const $=id=>document.getElementById(id);
-function openDB(){return new Promise((resolve,reject)=>{const req=indexedDB.open(DB_NAME,1);req.onupgradeneeded=()=>{const d=req.result;if(!d.objectStoreNames.contains(STORE))d.createObjectStore(STORE,{keyPath:'id'});};req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(req.error);});}
-function dbGet(id=VAULT_ID){return new Promise((resolve,reject)=>{const tx=db.transaction(STORE,'readonly'),r=tx.objectStore(STORE).get(id);r.onsuccess=()=>resolve(r.result||null);r.onerror=()=>reject(r.error);});}
-function dbPut(value){return new Promise((resolve,reject)=>{const tx=db.transaction(STORE,'readwrite');tx.objectStore(STORE).put(value);tx.oncomplete=resolve;tx.onerror=()=>reject(tx.error);});}
-function deriveKey(password,salt){return crypto.subtle.importKey('raw',new TextEncoder().encode(password),'PBKDF2',false,['deriveKey']).then(base=>crypto.subtle.deriveKey({name:'PBKDF2',salt,iterations:310000,hash:'SHA-256'},base,{name:'AES-GCM',length:256},false,['encrypt','decrypt']));}
-async function encryptData(data,k=key,salt=vaultMeta.salt){const iv=crypto.getRandomValues(new Uint8Array(12));const bytes=new TextEncoder().encode(JSON.stringify(data));const encrypted=await crypto.subtle.encrypt({name:'AES-GCM',iv},k,bytes);return {id:VAULT_ID,salt:Array.from(salt),iv:Array.from(iv),cipher:Array.from(new Uint8Array(encrypted)),updatedAt:Date.now(),version:1};}
-async function decryptData(meta,k){const clear=await crypto.subtle.decrypt({name:'AES-GCM',iv:new Uint8Array(meta.iv)},k,new Uint8Array(meta.cipher));return JSON.parse(new TextDecoder().decode(clear));}
-function bytes(a){return new Uint8Array(a);}
-function showAuth(mode){authMode=mode;$('authTitle').textContent=mode==='register'?'Your money, organized.':'Welcome back.';$('authSubtitle').textContent=mode==='register'?'Create your private, encrypted financial vault.':'Unlock your local financial vault.';$('nameField').classList.toggle('hidden',mode!=='register');$('confirmField').classList.toggle('hidden',mode!=='register');$('authSubmit').textContent=mode==='register'?'Create secure vault':'Unlock my vault';$('switchAuth').textContent=mode==='register'?'Already registered? Sign in':'New here? Create a vault';$('authError').textContent='';$('masterPassword').value='';$('confirmPassword').value='';}
-function toast(message){$('toastRoot').innerHTML='';const d=document.createElement('div');d.className='toast';d.textContent=message;$('toastRoot').appendChild(d);setTimeout(()=>d.remove(),2800);}
-function escapeHTML(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
-function normalize(s){return String(s??'').toLocaleLowerCase();}
-async function authSubmit(e){e.preventDefault();$('authError').textContent='';const password=$('masterPassword').value;if(password.length<10){$('authError').textContent='Use a master password of at least 10 characters.';return;}
-try{
- if(authMode==='register'){
-  if(password!==$('confirmPassword').value){$('authError').textContent='The passwords do not match.';return;}
-  if(await dbGet()){ $('authError').textContent='A vault already exists in this browser. Sign in instead.';showAuth('login');return;}
-  userName=$('displayName').value.trim()||'there';const salt=crypto.getRandomValues(new Uint8Array(16));key=await deriveKey(password,salt);vaultMeta={salt:Array.from(salt)};records=[];const meta=await encryptData({userName,records,lastUpdated:Date.now()});await dbPut(meta);await enterApp();
- }else{
-  const meta=await dbGet();if(!meta){$('authError').textContent='No vault exists in this browser. Create one first or import a backup.';return;}
-  const k=await deriveKey(password,bytes(meta.salt));let data;try{data=await decryptData(meta,k);}catch{ $('authError').textContent='Incorrect password, or the vault data is damaged.';return;}
-  key=k;vaultMeta={salt:bytes(meta.salt)};records=Array.isArray(data.records)?data.records:[];userName=data.userName||'there';lastUpdated=data.lastUpdated||meta.updatedAt;await enterApp();
- }
-}catch(err){console.error(err);$('authError').textContent='Could not open the vault. Try a current Safari or Chrome browser.';}
-}
-async function persist(){if(!key||!vaultMeta)return;const blob=await encryptData({userName,records,lastUpdated:Date.now()});await dbPut(blob);lastUpdated=blob.updatedAt;renderStats();}
-async function enterApp(){ $('authScreen').classList.add('hidden');$('app').classList.remove('hidden');$('avatar').textContent=(userName[0]||'A').toUpperCase();const hr=new Date().getHours();$('greeting').textContent=(hr<12?'Good morning':hr<18?'Good afternoon':'Good evening')+' 👋';buildChips();render();}
-function lockApp(){key=null;records=[];vaultMeta=null;$('app').classList.add('hidden');$('authScreen').classList.remove('hidden');showAuth('login');}
-function buildChips(){const root=$('chips');root.innerHTML='';['All',...CATEGORIES].forEach(cat=>{const b=document.createElement('button');b.className='chip'+(currentCategory===cat?' active':'');b.textContent=cat;b.onclick=()=>{currentCategory=cat;document.querySelectorAll('[data-cat]').forEach(n=>n.classList.toggle('active',n.dataset.cat===cat));buildChips();render();};root.appendChild(b);});}
-function renderStats(){ $('totalStat').textContent=records.length;$('categoryStat').textContent=new Set(records.map(r=>r.category)).size;$('updatedStat').textContent=lastUpdated?new Date(lastUpdated).toLocaleDateString(undefined,{month:'short',day:'numeric'}):'—';}
-function render(){renderStats();const query=normalize($('searchInput').value.trim());let filtered=records.filter(r=>(currentCategory==='All'||r.category===currentCategory)&&(!query||normalize([r.title,r.category,r.institution,r.notes,...Object.values(r.fields||{})].join(' ')).includes(query)));filtered.sort((a,b)=>(sortNewest?1:-1)*((b.updatedAt||b.createdAt||0)-(a.updatedAt||a.createdAt||0)));$('listTitle').textContent=currentCategory==='All'?'All entries':currentCategory;$('entryCount').textContent=`${filtered.length} ${filtered.length===1?'entry':'entries'}`;const root=$('cards');root.innerHTML='';
-if(!filtered.length){const d=document.createElement('div');d.className='empty';d.innerHTML=`<div class="big">${query?'⌕':'✦'}</div><strong>${query?'No matching details':'Nothing here yet'}</strong><span>${query?'Try another keyword or category.':'Add your first entry to start building your vault.'}</span><div style="margin-top:18px">${!query?'<button class="primary" id="emptyAdd">＋ Add your first entry</button>':''}</div>`;root.appendChild(d);const b=$('emptyAdd');if(b)b.onclick=()=>openEditor();return;}
-filtered.forEach((r,i)=>{const meta=CATEGORY_META[r.category]||CATEGORY_META.Notes;const color=r.color||meta.color;const card=document.createElement('article');card.className='entry';card.style.setProperty('--card-color',color);card.style.animationDelay=Math.min(i*35,240)+'ms';const visible=Object.entries(r.fields||{}).filter(([k,v])=>String(v??'').trim()&&!/password|pin|cvv|security code|otp/i.test(k)).slice(0,3);card.innerHTML=`<div class="entry-head"><span class="category-tag">${escapeHTML(r.category)}</span><button class="entry-menu" aria-label="Edit ${escapeHTML(r.title)}" title="Edit" data-edit="${r.id}">⋯</button></div><h3>${escapeHTML(r.title)}</h3><p class="institution">${escapeHTML(r.institution||r.category)}</p><div class="detail-list">${visible.map(([k,v])=>`<div class="detail-row"><span>${escapeHTML(k)}</span><span>${escapeHTML(v)}</span></div>`).join('')}${r.notes?`<div class="detail-row"><span>Notes</span><span>${escapeHTML(r.notes.length>65?r.notes.slice(0,62)+'…':r.notes)}</span></div>`:''}</div><div class="entry-footer"><button class="mini-btn" data-view="${r.id}">View details</button><button class="mini-btn" data-edit="${r.id}">Edit</button></div>`;root.appendChild(card);});
-root.querySelectorAll('[data-edit]').forEach(b=>b.onclick=()=>openEditor(b.dataset.edit));root.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>viewEntry(b.dataset.view));
-}
-function modal(html){$('modalRoot').innerHTML=`<div class="modal-backdrop" id="backdrop"><section class="modal" role="dialog" aria-modal="true">${html}</section></div>`;$('backdrop').addEventListener('click',e=>{if(e.target.id==='backdrop')closeModal();});}
-function closeModal(){$('modalRoot').innerHTML='';editingId=null;}
+const pad=n=>String(n).padStart(2,'0');
+const CATEGORIES=['Credit cards','Debit cards','Netbanking','Login details','FD details','BOND details','Notes'];
+const CATEGORY_META={'Credit cards':{color:'#5376e8'},'Debit cards':{color:'#16a085'},'Netbanking':{color:'#8b5cf6'},'Login details':{color:'#0f9fba'},'FD details':{color:'#e39a35'},'BOND details':{color:'#df5c83'},'Notes':{color:'#64748b'}};
+const PALETTE=['#5376e8','#16a085','#8b5cf6','#e39a35','#df5c83','#64748b','#0f9fba','#d45535','#44546a','#4c9b55'];
+// s = sensitive (hidden until revealed), m = show masked last 4 on the card, rem = date field that creates an automatic reminder
+const CARD=[
+ {l:'Card Type',t:'select',o:['Visa','Mastercard','RuPay','Amex']},{l:'Card Holder Name'},{l:'Bank Name'},
+ {l:'Card Number',s:1,m:1,mode:'numeric',max:19},
+ {l:'Expiry Month',t:'select',o:Array.from({length:12},(_,i)=>pad(i+1))},{l:'Expiry Year',t:'year'},
+ {l:'CVV',s:1,mode:'numeric',max:4},{l:'PIN',s:1,mode:'numeric',max:8},
+ {l:'Card Limit',mode:'decimal'},{l:'Payment Date',t:'date',rem:'monthly'}
+];
 const FIELDS={
- 'Credit cards':[['Card issuer','text'],['Cardholder name','text'],['Last 4 digits','text'],['Expiry (MM/YY)','text'],['Customer care','text'],['Payment due day','text']],
- 'Debit cards':[['Bank','text'],['Cardholder name','text'],['Last 4 digits','text'],['Expiry (MM/YY)','text'],['Linked account nickname','text']],
- 'Netbanking':[['Bank / provider','text'],['Customer ID / username','text'],['Website URL','url'],['Registered mobile (optional)','text']],
- 'FD details':[['Bank / company','text'],['Principal amount','text'],['Interest rate','text'],['Start date','date'],['Maturity date','date'],['Maturity amount','text'],['Auto-renewal','text']],
- 'BOND details':[['Issuer','text'],['Investment amount','text'],['Coupon / YTM','text'],['Purchase date','date'],['Maturity date','date'],['Interest frequency','text'],['Platform / demat','text']],
- 'Notes':[['Topic','text'],['Reference URL','url']]
+ 'Credit cards':CARD,'Debit cards':CARD,
+ 'Netbanking':[{l:'Account Holder Name'},{l:'Bank Name'},{l:'Account Number',s:1,m:1,mode:'numeric'},{l:'Customer ID'},{l:'Registered Mobile No',t:'tel',mode:'tel'},{l:'User ID'},{l:'Login Password',s:1},{l:'Profile Password',s:1},{l:'Transaction Password',s:1},{l:'Mobile Username'},{l:'Mobile Password',s:1},{l:'Mobile Login PIN',s:1,mode:'numeric'}],
+ 'Login details':[{l:'Name'},{l:'Username'},{l:'Password',s:1}],
+ 'FD details':[{l:'Bank / company'},{l:'Principal amount'},{l:'Interest rate'},{l:'Start date',t:'date'},{l:'Maturity date',t:'date',rem:'once'},{l:'Maturity amount'},{l:'Auto-renewal'}],
+ 'BOND details':[{l:'Issuer'},{l:'Investment amount'},{l:'Coupon / YTM'},{l:'Purchase date',t:'date'},{l:'Maturity date',t:'date',rem:'once'},{l:'Interest frequency'},{l:'Platform / demat'}],
+ 'Notes':[{l:'Topic'},{l:'Reference URL',t:'url'}]
 };
-function openEditor(id=null){editingId=id||null;const old=id?records.find(r=>r.id===id):null;const cat=old?.category|| (currentCategory==='All'?'Credit cards':currentCategory);const color=old?.color||CATEGORY_META[cat].color;const fieldMarkup=(category,record)=>FIELDS[category].map(([label,type])=>`<div class="field"><label>${escapeHTML(label)}</label><input data-field="${escapeHTML(label)}" type="${type}" value="${escapeHTML(record?.fields?.[label]||'')}" ${type==='url'?'placeholder="https://"':''}></div>`).join('');
-modal(`<div class="modal-head"><h2>${old?'Edit entry':'Add new entry'}</h2><button class="close" id="modalClose" type="button">×</button></div><form id="entryForm"><div class="form-grid"><div class="field span2"><label for="entryCategory">Category</label><select id="entryCategory">${CATEGORIES.map(c=>`<option ${c===cat?'selected':''}>${escapeHTML(c)}</option>`).join('')}</select></div><div class="field span2"><label for="entryTitle">Entry title *</label><input id="entryTitle" required maxlength="100" placeholder="e.g. HDFC Regalia, SBI FD" value="${escapeHTML(old?.title||'')}"></div><div class="field span2"><label for="entryInstitution">Bank / institution / short description</label><input id="entryInstitution" maxlength="100" placeholder="e.g. HDFC Bank" value="${escapeHTML(old?.institution||'')}"></div><div id="dynamicFields" class="form-grid span2">${fieldMarkup(cat,old)}</div><div class="field span2"><label for="entryNotes">Notes (optional)</label><textarea id="entryNotes" maxlength="4000" placeholder="Add helpful context. Avoid storing PINs, CVVs, OTPs or passwords.">${escapeHTML(old?.notes||'')}</textarea></div><div class="field span2"><label>Card accent color</label><div class="color-options" id="colorOptions">${PALETTE.map(c=>`<button type="button" class="swatch ${c===color?'selected':''}" data-color="${c}" style="background:${c}" aria-label="Choose ${c}" title="${c}"></button>`).join('')}</div></div></div><div class="modal-actions">${old?'<button type="button" class="danger" id="deleteEntry" style="margin-right:auto">Delete</button>':''}<button type="button" class="secondary" id="cancelEntry">Cancel</button><button type="submit" class="primary">Save entry</button></div></form>`);
-$('modalClose').onclick=closeModal;$('cancelEntry').onclick=closeModal;let chosenColor=color;
-function updateDynamic(){const c=$('entryCategory').value;const saved=old&&c===old.category?old:null;$('dynamicFields').innerHTML=fieldMarkup(c,saved);document.querySelectorAll('[data-color]').forEach(b=>b.classList.toggle('selected',b.dataset.color===chosenColor));}
-$('entryCategory').onchange=()=>{chosenColor=CATEGORY_META[$('entryCategory').value].color;updateDynamic();};
-$('colorOptions').querySelectorAll('[data-color]').forEach(b=>b.onclick=()=>{chosenColor=b.dataset.color;$('colorOptions').querySelectorAll('.swatch').forEach(s=>s.classList.toggle('selected',s===b));});
-$('entryForm').onsubmit=async e=>{e.preventDefault();const category=$('entryCategory').value;const fields={};$('dynamicFields').querySelectorAll('[data-field]').forEach(inp=>{if(inp.value.trim())fields[inp.dataset.field]=inp.value.trim();});const now=Date.now();const entry={id:old?.id||crypto.randomUUID(),category,title:$('entryTitle').value.trim(),institution:$('entryInstitution').value.trim(),fields,notes:$('entryNotes').value.trim(),color:chosenColor,createdAt:old?.createdAt||now,updatedAt:now};if(old)records=records.map(r=>r.id===old.id?entry:r);else records.unshift(entry);await persist();closeModal();render();toast(old?'Entry updated securely':'Entry saved securely');};
-if(old)$('deleteEntry').onclick=()=>deleteEntry(old.id);
+const spec=c=>FIELDS[c]||[];
+const SENS_RE=/password|cvv|\bpin\b|otp|security code/i;
+const isSens=(cat,label)=>spec(cat).some(f=>f.l===label&&f.s)||SENS_RE.test(label);
+const BEFORE=[[0,'On the day'],[1,'1 day before'],[2,'2 days before'],[3,'3 days before'],[5,'5 days before'],[7,'1 week before'],[14,'2 weeks before'],[30,'1 month before']];
+
+let db, records=[], reminders=[], doneMap={}, settings={alertDays:3}, profile={}, key=null, vaultMeta=null, userName='there', currentCategory='All', view='vault', sortNewest=true, lastUpdated=0, authMode='register', hasVault=false, timer=null, deferredPrompt=null;
+const notified=new Set();
+
+/* ---------- storage + crypto ---------- */
+function openDB(){return new Promise((res,rej)=>{const r=indexedDB.open(DB_NAME,1);r.onupgradeneeded=()=>{if(!r.result.objectStoreNames.contains(STORE))r.result.createObjectStore(STORE,{keyPath:'id'});};r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error);});}
+function dbGet(id=VAULT_ID){return new Promise((res,rej)=>{const q=db.transaction(STORE,'readonly').objectStore(STORE).get(id);q.onsuccess=()=>res(q.result||null);q.onerror=()=>rej(q.error);});}
+function dbPut(v){return new Promise((res,rej)=>{const tx=db.transaction(STORE,'readwrite');tx.objectStore(STORE).put(v);tx.oncomplete=res;tx.onerror=()=>rej(tx.error);});}
+function deriveKey(pw,salt){return crypto.subtle.importKey('raw',new TextEncoder().encode(pw),'PBKDF2',false,['deriveKey']).then(b=>crypto.subtle.deriveKey({name:'PBKDF2',salt,iterations:310000,hash:'SHA-256'},b,{name:'AES-GCM',length:256},false,['encrypt','decrypt']));}
+async function encryptData(data,k=key,salt=vaultMeta.salt){const iv=crypto.getRandomValues(new Uint8Array(12));const enc=await crypto.subtle.encrypt({name:'AES-GCM',iv},k,new TextEncoder().encode(JSON.stringify(data)));return {id:VAULT_ID,salt:Array.from(salt),iv:Array.from(iv),cipher:Array.from(new Uint8Array(enc)),updatedAt:Date.now(),version:1};}
+async function decryptData(meta,k){const clear=await crypto.subtle.decrypt({name:'AES-GCM',iv:new Uint8Array(meta.iv)},k,new Uint8Array(meta.cipher));return JSON.parse(new TextDecoder().decode(clear));}
+const bytes=a=>new Uint8Array(a);
+async function persist(){if(!key||!vaultMeta)return;try{const blob=await encryptData({userName,profile,records,reminders,done:doneMap,settings,lastUpdated:Date.now()});await dbPut(blob);lastUpdated=blob.updatedAt;}catch(e){console.error(e);toast('Could not save — please export a backup');}}
+function loadData(data,meta){records=Array.isArray(data.records)?data.records:[];reminders=Array.isArray(data.reminders)?data.reminders:[];doneMap=data.done||{};settings={alertDays:3,...(data.settings||{})};profile=data.profile||{};userName=data.userName||'there';lastUpdated=data.lastUpdated||meta?.updatedAt||0;}
+
+/* ---------- helpers ---------- */
+function toast(m){$('toastRoot').innerHTML='';const d=document.createElement('div');d.className='toast';d.textContent=m;$('toastRoot').appendChild(d);setTimeout(()=>d.remove(),3200);}
+const escapeHTML=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const normalize=s=>String(s??'').toLocaleLowerCase();
+const maskVal=v=>'•••• '+String(v).replace(/\s/g,'').slice(-4);
+const subtitle=r=>r.institution||r.fields?.['Bank Name']||r.fields?.['Bank / company']||r.fields?.Issuer||r.fields?.Username||r.fields?.Topic||r.category;
+function copyText(t){if(navigator.clipboard?.writeText)navigator.clipboard.writeText(t).then(()=>toast('Copied'),()=>toast('Copy failed'));else toast('Copy not supported here');}
+function getTheme(){try{return localStorage.getItem('finvault_theme')||'light';}catch{return 'light';}}
+function applyTheme(p){try{localStorage.setItem('finvault_theme',p);}catch{}const dark=p==='dark'||(p==='auto'&&matchMedia('(prefers-color-scheme: dark)').matches);document.documentElement.dataset.theme=dark?'dark':'light';$('themeColor').content=dark?'#000000':'#f5f6fa';}
+matchMedia('(prefers-color-scheme: dark)').addEventListener?.('change',()=>{if(getTheme()==='auto')applyTheme('auto');});
+applyTheme(getTheme());
+
+/* ---------- dates + reminders ---------- */
+const ymd=d=>`${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+const parseD=s=>{const[y,m,d]=s.split('-').map(Number);return new Date(y,m-1,d);};
+const todayD=()=>{const d=new Date();return new Date(d.getFullYear(),d.getMonth(),d.getDate());};
+const diffDays=(a,b)=>Math.round((a-b)/864e5);
+const clampDay=(y,m,d)=>Math.min(d,new Date(y,m+1,0).getDate());
+const validDate=s=>/^\d{4}-\d{2}-\d{2}$/.test(s||'');
+function nextOcc(r,t){
+ const done=doneMap[r.id], s=parseD(r.date);
+ if(r.repeat==='none'||!r.repeat){if(done&&done>=r.date)return null;return s;}
+ let base=t;if(done){const nd=parseD(done);nd.setDate(nd.getDate()+1);if(nd>base)base=nd;}if(s>base)base=s;
+ if(r.repeat==='monthly'){let y=base.getFullYear(),m=base.getMonth();for(let i=0;i<14;i++){const c=new Date(y,m,clampDay(y,m,s.getDate()));if(c>=base)return c;m++;if(m>11){m=0;y++;}}return null;}
+ let y=base.getFullYear();let c=new Date(y,s.getMonth(),clampDay(y,s.getMonth(),s.getDate()));if(c<base){y++;c=new Date(y,s.getMonth(),clampDay(y,s.getMonth(),s.getDate()));}return c;
 }
-function viewEntry(id){const r=records.find(x=>x.id===id);if(!r)return;const meta=CATEGORY_META[r.category]||CATEGORY_META.Notes;modal(`<div class="modal-head"><h2>${escapeHTML(r.title)}</h2><button class="close" id="modalClose">×</button></div><div style="margin-bottom:16px"><span class="category-tag" style="--card-color:${r.color||meta.color}">${escapeHTML(r.category)}</span></div><p style="color:#788196;margin-top:0">${escapeHTML(r.institution||'')}</p><div class="detail-list">${Object.entries(r.fields||{}).map(([k,v])=>`<div class="detail-row" style="font-size:14px"><span>${escapeHTML(k)}</span><span style="max-width:65%">${escapeHTML(v)}</span></div>`).join('')}${r.notes?`<div style="border-top:1px solid #e8ebf2;padding-top:14px;margin-top:5px"><div style="font-size:12px;color:#788196;margin-bottom:5px">Notes</div><div style="white-space:pre-wrap;overflow-wrap:anywhere">${escapeHTML(r.notes)}</div></div>`:''}</div><div class="modal-actions"><button class="secondary" id="cancelEntry">Close</button><button class="primary" id="editFromView">Edit entry</button></div>`);$('modalClose').onclick=closeModal;$('cancelEntry').onclick=closeModal;$('editFromView').onclick=()=>openEditor(id);}
-async function deleteEntry(id){if(!confirm('Delete this entry permanently from this browser?'))return;records=records.filter(r=>r.id!==id);await persist();closeModal();render();toast('Entry deleted');}
-async function exportBackup(){try{const meta=await dbGet();if(!meta){toast('No saved vault found');return;}const blob=new Blob([JSON.stringify({app:'FinVault',format:1,exportedAt:new Date().toISOString(),vault:meta},null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='finvault-encrypted-backup.json';a.click();URL.revokeObjectURL(url);toast('Encrypted backup exported');}catch(e){toast('Could not export backup');}}
-async function importBackup(file){try{const obj=JSON.parse(await file.text());if(obj.app!=='FinVault'||!obj.vault?.cipher||!obj.vault?.salt){toast('This is not a valid FinVault backup');return;}if(await dbGet()&&!confirm('Replace the vault currently saved in this browser? Export a backup first if needed.'))return;await dbPut(obj.vault);toast('Backup imported. Sign in using its original master password.');showAuth('login');}catch(e){toast('Could not read this backup file');}finally{$('importFile').value='';}}
-$('authForm').addEventListener('submit',authSubmit);$('switchAuth').onclick=async()=>{const existing=await dbGet();if(authMode==='register'){if(existing)showAuth('login');else{$('importFile').click();}}else showAuth('register');};
-$('searchInput').addEventListener('input',render);$('addBtn').onclick=()=>openEditor();$('lockBtn').onclick=lockApp;$('exportBtn').onclick=exportBackup;$('sortBtn').onclick=()=>{sortNewest=!sortNewest;$('sortBtn').textContent=sortNewest?'Recently updated ↓':'Oldest updated ↑';render();};
-$('sidebar').querySelectorAll('[data-cat]').forEach(b=>b.onclick=()=>{currentCategory=b.dataset.cat;document.querySelectorAll('[data-cat]').forEach(n=>n.classList.toggle('active',n===b));buildChips();render();});
+function allReminders(){
+ const t=todayD(),list=[];
+ reminders.forEach(r=>{if(validDate(r.date))list.push({...r,derived:false,before:Number(r.before)||0});});
+ records.forEach(rec=>spec(rec.category).forEach(f=>{const v=rec.fields?.[f.l];if(f.rem&&validDate(v))list.push({id:`d:${rec.id}:${f.l}`,title:`${rec.title} — ${f.l}`,date:v,repeat:f.rem==='monthly'?'monthly':'none',before:Number(settings.alertDays)||0,derived:true,entryId:rec.id});}));
+ return list.map(r=>{const n=nextOcc(r,t);if(!n)return null;const days=diffDays(n,t);if(r.derived&&r.repeat==='none'&&days<-30)return null;return {...r,next:n,days,due:days<=r.before};}).filter(Boolean).sort((a,b)=>a.next-b.next);
+}
+function updateBadge(n){const b=$('remBadge');b.textContent=n;b.classList.toggle('hidden',!n);}
+async function notify(title,body){
+ if(!('Notification' in window)||Notification.permission!=='granted')return;
+ try{const reg=await navigator.serviceWorker?.getRegistration();if(reg){await reg.showNotification(title,{body,icon:'icon-192.png',badge:'icon-192.png',tag:'finvault-due'});return;}}catch{}
+ try{new Notification(title,{body,icon:'icon-192.png'});}catch{}
+}
+function checkDue(){
+ if(!key)return;const due=allReminders().filter(r=>r.due);updateBadge(due.length);
+ const fresh=due.filter(r=>{const k=r.id+'|'+ymd(r.next);if(notified.has(k))return false;notified.add(k);return true;});
+ if(!fresh.length)return;
+ const title=fresh.length===1?'Reminder: '+fresh[0].title:`${fresh.length} reminders due`;
+ toast('🔔 '+title);notify('FinVault',title+(fresh.length>1?' — '+fresh.slice(0,3).map(r=>r.title).join(', '):''));
+}
+const whenText=d=>d<0?`Overdue by ${-d} day${d===-1?'':'s'}`:d===0?'Today':d===1?'Tomorrow':`In ${d} days`;
+
+const updateAvatar=()=>{$('avatar').textContent=(userName[0]||'A').toUpperCase();};
+/* ---------- auth ---------- */
+function showAuth(mode){authMode=mode;const reg=mode==='register';$('authTitle').textContent=reg?'Your money, organized.':'Welcome back.';$('authSubtitle').textContent=reg?'Create your private, encrypted financial vault.':'Unlock your local financial vault.';$('nameField').classList.toggle('hidden',!reg);$('confirmField').classList.toggle('hidden',!reg);$('authSubmit').textContent=reg?'Create secure vault':'Unlock my vault';$('switchAuth').textContent=reg?(hasVault?'Already registered? Sign in':'Have an encrypted backup? Import it'):'Restore from a backup file';$('authError').textContent='';$('masterPassword').value='';$('confirmPassword').value='';$('masterPassword').autocomplete=reg?'new-password':'current-password';}
+async function authSubmit(e){
+ e.preventDefault();$('authError').textContent='';const pw=$('masterPassword').value;
+ if(pw.length<10){$('authError').textContent='Use a master password of at least 10 characters.';return;}
+ try{
+  if(authMode==='register'){
+   if(pw!==$('confirmPassword').value){$('authError').textContent='The passwords do not match.';return;}
+   if(await dbGet()){hasVault=true;showAuth('login');$('authError').textContent='A vault already exists on this device. Sign in instead.';return;}
+   userName=$('displayName').value.trim()||'there';const salt=crypto.getRandomValues(new Uint8Array(16));key=await deriveKey(pw,salt);vaultMeta={salt};records=[];reminders=[];doneMap={};profile={};settings={alertDays:3};await persist();hasVault=true;await enterApp();
+  }else{
+   const meta=await dbGet();if(!meta){$('authError').textContent='No vault exists here. Create one first or import a backup.';return;}
+   const k=await deriveKey(pw,bytes(meta.salt));let data;try{data=await decryptData(meta,k);}catch{$('authError').textContent='Incorrect password, or the vault data is damaged.';return;}
+   key=k;vaultMeta={salt:bytes(meta.salt)};loadData(data,meta);await enterApp();
+  }
+ }catch(err){console.error(err);$('authError').textContent='Could not open the vault. Try a current Safari or Chrome browser.';}
+}
+async function enterApp(){
+ $('authScreen').classList.add('hidden');$('app').classList.remove('hidden');
+ const hr=new Date().getHours();$('greeting').textContent=(hr<12?'Good morning':hr<18?'Good afternoon':'Good evening')+' 👋';
+ updateAvatar();currentCategory='All';setView('vault','All');checkDue();clearInterval(timer);timer=setInterval(checkDue,60000);
+}
+function lockApp(){clearInterval(timer);key=null;records=[];reminders=[];doneMap={};profile={};vaultMeta=null;notified.clear();closeModal();['cards','profileView','remindersView','dueBanner'].forEach(i=>$(i).innerHTML='');$('searchInput').value='';$('app').classList.add('hidden');$('authScreen').classList.remove('hidden');showAuth('login');}
+document.addEventListener('visibilitychange',()=>{if(!document.hidden)checkDue();});
+
+/* ---------- navigation ---------- */
+function setView(v,cat){
+ view=v;if(cat)currentCategory=cat;
+ $('vaultView').classList.toggle('hidden',v!=='vault');$('remindersView').classList.toggle('hidden',v!=='reminders');$('profileView').classList.toggle('hidden',v!=='profile');
+ $('backBtn').classList.toggle('hidden',v==='vault');
+ if(v==='vault'){buildChips();render();}else if(v==='reminders')renderReminders();else renderProfile();
+ window.scrollTo({top:0});
+}
+function buildChips(){const root=$('chips');root.innerHTML='';['All',...CATEGORIES].forEach(cat=>{const b=document.createElement('button');b.className='chip'+(currentCategory===cat?' active':'');b.textContent=cat;b.onclick=()=>setView('vault',cat);root.appendChild(b);});}
+
+/* ---------- vault list ---------- */
+function renderStats(){$('totalStat').textContent=records.length;$('categoryStat').textContent=new Set(records.map(r=>r.category)).size;$('updatedStat').textContent=lastUpdated?new Date(lastUpdated).toLocaleDateString(undefined,{month:'short',day:'numeric'}):'—';}
+function render(){
+ renderStats();
+ const due=allReminders().filter(r=>r.due);updateBadge(due.length);
+ $('dueBanner').innerHTML=due.length?`<div class="due-banner"><span>🔔 ${due.length} reminder${due.length>1?'s':''} need attention: ${escapeHTML(due[0].title)}${due.length>1?` +${due.length-1} more`:''}</span><button class="secondary" id="bannerBtn" type="button">View</button></div>`:'';
+ if($('bannerBtn'))$('bannerBtn').onclick=()=>setView('reminders');
+ const q=normalize($('searchInput').value.trim());
+ const filtered=records.filter(r=>(currentCategory==='All'||r.category===currentCategory)&&(!q||normalize([r.title,r.category,r.institution,r.notes,...Object.entries(r.fields||{}).filter(([k])=>!isSens(r.category,k)).map(e=>e[1])].join(' ')).includes(q)));
+ filtered.sort((a,b)=>(sortNewest?1:-1)*((b.updatedAt||b.createdAt||0)-(a.updatedAt||a.createdAt||0)));
+ $('listTitle').textContent=currentCategory==='All'?'All entries':currentCategory;$('entryCount').textContent=`${filtered.length} ${filtered.length===1?'entry':'entries'}`;
+ const root=$('cards');root.innerHTML='';
+ if(!filtered.length){const d=document.createElement('div');d.className='empty';d.innerHTML=`<div class="big">${q?'⌕':'✦'}</div><strong>${q?'No matching details':'Nothing here yet'}</strong><span>${q?'Try another keyword or category.':'Add your first entry to start building your vault.'}</span><div style="margin-top:18px">${!q?'<button class="primary" id="emptyAdd">＋ Add</button>':''}</div>`;root.appendChild(d);if($('emptyAdd'))$('emptyAdd').onclick=()=>openEditor();return;}
+ filtered.forEach((r,i)=>{
+  const color=r.color||(CATEGORY_META[r.category]||CATEGORY_META.Notes).color;
+  const rows=[];spec(r.category).forEach(f=>{const v=r.fields?.[f.l];if(!v)return;if(f.s){if(f.m)rows.push([f.l,maskVal(v)]);}else rows.push([f.l,v]);});
+  const card=document.createElement('article');card.className='entry';card.style.setProperty('--card-color',color);card.style.animationDelay=Math.min(i*35,240)+'ms';
+  card.innerHTML=`<div class="entry-head"><span class="category-tag">${escapeHTML(r.category)}</span><button class="entry-menu" aria-label="Edit ${escapeHTML(r.title)}" title="Edit" data-edit="${r.id}">⋯</button></div><h3>${escapeHTML(r.title)}</h3><p class="institution">${escapeHTML(subtitle(r))}</p><div class="detail-list">${rows.slice(0,3).map(([k,v])=>`<div class="detail-row"><span>${escapeHTML(k)}</span><span>${escapeHTML(v)}</span></div>`).join('')}${r.notes?`<div class="detail-row"><span>Description</span><span>${escapeHTML(r.notes.length>65?r.notes.slice(0,62)+'…':r.notes)}</span></div>`:''}</div><div class="entry-footer"><button class="mini-btn" data-view="${r.id}">View details</button><button class="mini-btn" data-edit="${r.id}">Edit</button></div>`;
+  root.appendChild(card);
+ });
+ root.querySelectorAll('[data-edit]').forEach(b=>b.onclick=()=>openEditor(b.dataset.edit));root.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>viewEntry(b.dataset.view));
+}
+
+/* ---------- modal ---------- */
+function modal(html){$('modalRoot').innerHTML=`<div class="modal-backdrop" id="backdrop"><section class="modal" role="dialog" aria-modal="true">${html}</section></div>`;$('backdrop').addEventListener('click',e=>{if(e.target.id==='backdrop')closeModal();});$('modalRoot').querySelectorAll('.eye').forEach(b=>b.onclick=()=>{const i=b.previousElementSibling;i.type=i.type==='password'?'text':'password';});}
+function closeModal(){$('modalRoot').innerHTML='';}
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&$('modalRoot').innerHTML)closeModal();});
+
+function fieldInput(f,val,idx){
+ const L=escapeHTML(f.l),v=escapeHTML(val||''),id='f_'+idx;
+ const attrs=`${f.mode?`inputmode="${f.mode}"`:''} ${f.max?`maxlength="${f.max}"`:''} ${f.t==='url'?'placeholder="https://"':''}`;
+ let ctl;
+ if(f.t==='select')ctl=`<select id="${id}" data-field="${L}"><option value="">Select</option>${f.o.map(o=>`<option ${o===val?'selected':''}>${escapeHTML(o)}</option>`).join('')}</select>`;
+ else if(f.t==='year'){const y=new Date().getFullYear(),list=[];for(let i=y-3;i<=y+25;i++)list.push(String(i));if(val&&!list.includes(val))list.push(val);ctl=`<select id="${id}" data-field="${L}"><option value="">Select</option>${list.map(o=>`<option ${o===val?'selected':''}>${o}</option>`).join('')}</select>`;}
+ else if(f.s)ctl=`<div class="pw-wrap"><input id="${id}" data-field="${L}" type="password" autocomplete="new-password" value="${v}" ${attrs}><button type="button" class="eye" aria-label="Show or hide ${L}">👁</button></div>`;
+ else ctl=`<input id="${id}" data-field="${L}" type="${f.t||'text'}" autocomplete="off" value="${v}" ${attrs}>`;
+ const hint=f.rem?`<span class="hint">🔔 Automatic reminder${f.rem==='monthly'?' — repeats every month on this day':''}</span>`:'';
+ return `<div class="field"><label for="${id}">${L}</label>${ctl}${hint}</div>`;
+}
+const fieldsMarkup=(cat,vals)=>spec(cat).map((f,i)=>fieldInput(f,vals?.[f.l],i)).join('');
+function deriveTitle(cat,f){
+ const pick={'Credit cards':[f['Bank Name'],f['Card Type']].filter(Boolean).join(' '),'Debit cards':[f['Bank Name'],f['Card Type']].filter(Boolean).join(' '),'Netbanking':f['Bank Name'],'Login details':f.Name||f.Username,'FD details':f['Bank / company'],'BOND details':f.Issuer,'Notes':f.Topic}[cat];
+ return pick||cat;
+}
+function openEditor(id=null){
+ const old=id?records.find(r=>r.id===id):null;
+ const cat=old?.category||(CATEGORIES.includes(currentCategory)?currentCategory:'Credit cards');
+ let color=old?.color||CATEGORY_META[cat].color;
+ modal(`<div class="modal-head"><h2>${old?'Edit entry':'Add new entry'}</h2><button class="close" id="modalClose" type="button">×</button></div><form id="entryForm"><div class="form-grid"><div class="field span2"><label for="entryCategory">Category</label><select id="entryCategory">${CATEGORIES.map(c=>`<option ${c===cat?'selected':''}>${escapeHTML(c)}</option>`).join('')}</select></div><div class="field span2"><label for="entryTitle">Title</label><input id="entryTitle" maxlength="100" placeholder="Optional — auto-filled from the details below" value="${escapeHTML(old?.title||'')}"></div><div id="dynamicFields" class="form-grid span2">${fieldsMarkup(cat,old?.category===cat?old.fields:null)}</div><div class="field span2"><label for="entryNotes">Description (optional)</label><textarea id="entryNotes" maxlength="4000" placeholder="Add helpful context. Avoid storing OTPs.">${escapeHTML(old?.notes||'')}</textarea></div><div class="field span2"><label>Accent color</label><div class="color-options" id="colorOptions">${PALETTE.map(c=>`<button type="button" class="swatch ${c===color?'selected':''}" data-color="${c}" style="background:${c}" aria-label="Choose ${c}" title="${c}"></button>`).join('')}</div></div></div><div class="modal-actions">${old?'<button type="button" class="danger" id="deleteEntry" style="margin-right:auto">Delete</button>':''}<button type="button" class="secondary" id="cancelEntry">Cancel</button><button type="submit" class="primary">Save entry</button></div></form>`);
+ $('modalClose').onclick=closeModal;$('cancelEntry').onclick=closeModal;
+ $('entryCategory').onchange=()=>{const cur={};$('dynamicFields').querySelectorAll('[data-field]').forEach(i=>cur[i.dataset.field]=i.value);const c=$('entryCategory').value;color=CATEGORY_META[c].color;$('dynamicFields').innerHTML=fieldsMarkup(c,{...(old?.category===c?old.fields:{}),...cur});$('dynamicFields').querySelectorAll('.eye').forEach(b=>b.onclick=()=>{const i=b.previousElementSibling;i.type=i.type==='password'?'text':'password';});$('colorOptions').querySelectorAll('.swatch').forEach(s=>s.classList.toggle('selected',s.dataset.color===color));};
+ $('colorOptions').querySelectorAll('[data-color]').forEach(b=>b.onclick=()=>{color=b.dataset.color;$('colorOptions').querySelectorAll('.swatch').forEach(s=>s.classList.toggle('selected',s===b));});
+ $('entryForm').onsubmit=async e=>{
+  e.preventDefault();const category=$('entryCategory').value;const fields={};
+  if(old&&old.category===category)Object.entries(old.fields||{}).forEach(([k,v])=>{if(!spec(category).some(f=>f.l===k))fields[k]=v;});
+  $('dynamicFields').querySelectorAll('[data-field]').forEach(i=>{if(i.value.trim())fields[i.dataset.field]=i.value.trim();});
+  const now=Date.now();
+  const entry={id:old?.id||crypto.randomUUID(),category,title:$('entryTitle').value.trim()||deriveTitle(category,fields),institution:old?.institution||'',fields,notes:$('entryNotes').value.trim(),color,createdAt:old?.createdAt||now,updatedAt:now};
+  if(old)records=records.map(r=>r.id===old.id?entry:r);else records.unshift(entry);
+  await persist();closeModal();render();checkDue();toast(old?'Entry updated securely':'Entry saved securely');
+ };
+ if(old)$('deleteEntry').onclick=()=>deleteEntry(old.id);
+}
+function viewEntry(id){
+ const r=records.find(x=>x.id===id);if(!r)return;const meta=CATEGORY_META[r.category]||CATEGORY_META.Notes;
+ const rows=[];spec(r.category).forEach(f=>{const v=r.fields?.[f.l];if(v)rows.push([f.l,v,!!f.s]);});
+ Object.entries(r.fields||{}).forEach(([k,v])=>{if(!spec(r.category).some(f=>f.l===k)&&v)rows.push([k,v,SENS_RE.test(k)]);});
+ modal(`<div class="modal-head"><h2>${escapeHTML(r.title)}</h2><button class="close" id="modalClose" type="button">×</button></div><div style="margin-bottom:10px"><span class="category-tag" style="--card-color:${r.color||meta.color}">${escapeHTML(r.category)}</span></div><p style="color:var(--muted);margin:0 0 6px">${escapeHTML(subtitle(r))}</p><div>${rows.map(([k,v,s],i)=>`<div class="vrow"><span class="vl">${escapeHTML(k)}</span><span class="vv" id="vv${i}"></span><span class="vb">${s?`<button class="mini-btn" data-show="${i}" type="button">Show</button>`:''}<button class="mini-btn" data-copy="${i}" type="button">Copy</button></span></div>`).join('')}${r.notes?`<div style="padding-top:14px"><div style="font-size:12px;color:var(--muted);margin-bottom:5px">Description</div><div style="white-space:pre-wrap;overflow-wrap:anywhere">${escapeHTML(r.notes)}</div></div>`:''}</div><div class="modal-actions"><button class="secondary" id="cancelEntry" type="button">Close</button><button class="primary" id="editFromView" type="button">Edit entry</button></div>`);
+ rows.forEach(([k,v,s],i)=>{$('vv'+i).textContent=s?'••••••••':v;});
+ $('modalRoot').querySelectorAll('[data-show]').forEach(b=>b.onclick=()=>{const i=+b.dataset.show,el=$('vv'+i),hidden=b.textContent==='Show';el.textContent=hidden?rows[i][1]:'••••••••';b.textContent=hidden?'Hide':'Show';});
+ $('modalRoot').querySelectorAll('[data-copy]').forEach(b=>b.onclick=()=>copyText(rows[+b.dataset.copy][1]));
+ $('modalClose').onclick=closeModal;$('cancelEntry').onclick=closeModal;$('editFromView').onclick=()=>openEditor(id);
+}
+async function deleteEntry(id){if(!confirm('Delete this entry permanently from this device?'))return;records=records.filter(r=>r.id!==id);await persist();closeModal();render();toast('Entry deleted');}
+
+/* ---------- reminders view ---------- */
+function renderReminders(){
+ const list=allReminders();updateBadge(list.filter(r=>r.due).length);
+ const root=$('remindersView');
+ root.innerHTML=`<div class="welcome"><div><h1>Reminders</h1><p>Dates for card payments, FD &amp; bond maturities, and anything else. Entry dates are added automatically.</p></div><button class="primary" id="addRem">＋ Add</button></div><div id="remList"></div>`;
+ $('addRem').onclick=()=>openReminder();
+ const box=$('remList');
+ if(!list.length){box.innerHTML=`<div class="empty"><div class="big">🔔</div><strong>No upcoming reminders</strong><span>Add one here, or save a Payment Date / Maturity date on an entry.</span></div>`;return;}
+ list.forEach(r=>{
+  const cls=r.days<0?'over':r.due?'soon':'';const mon=r.next.toLocaleDateString(undefined,{month:'short'});
+  const row=document.createElement('div');row.className='rem';
+  row.innerHTML=`<div class="rem-date"><b>${r.next.getDate()}</b><span>${escapeHTML(mon)}</span></div><div class="rem-body"><strong>${escapeHTML(r.title)}</strong><div class="rem-sub">${r.next.toLocaleDateString(undefined,{weekday:'short',year:'numeric',month:'short',day:'numeric'})} · ${r.repeat==='monthly'?'Every month':r.repeat==='yearly'?'Every year':'One time'}${r.derived?' · From an entry':''}${r.note?' · '+escapeHTML(r.note):''}</div></div><span class="pill ${cls}">${whenText(r.days)}</span><div class="rem-actions"><button class="mini-btn" data-done="${escapeHTML(r.id)}">✓ Done</button>${r.derived?`<button class="mini-btn" data-open="${r.entryId}">Open</button>`:`<button class="mini-btn" data-editrem="${r.id}">Edit</button>`}</div>`;
+  box.appendChild(row);
+ });
+ box.querySelectorAll('[data-done]').forEach(b=>b.onclick=async()=>{const r=list.find(x=>x.id===b.dataset.done);doneMap[r.id]=ymd(r.next);await persist();renderReminders();toast(r.repeat==='none'?'Marked done':'Done — next one scheduled');});
+ box.querySelectorAll('[data-open]').forEach(b=>b.onclick=()=>viewEntry(b.dataset.open));
+ box.querySelectorAll('[data-editrem]').forEach(b=>b.onclick=()=>openReminder(b.dataset.editrem));
+}
+function openReminder(id=null){
+ const old=id?reminders.find(r=>r.id===id):null;
+ modal(`<div class="modal-head"><h2>${old?'Edit reminder':'Add reminder'}</h2><button class="close" id="modalClose" type="button">×</button></div><form id="remForm"><div class="form-grid"><div class="field span2"><label for="remTitle">Title *</label><input id="remTitle" required maxlength="100" placeholder="e.g. Pay electricity bill" value="${escapeHTML(old?.title||'')}"></div><div class="field"><label for="remDate">Date *</label><input id="remDate" type="date" required value="${escapeHTML(old?.date||ymd(todayD()))}"></div><div class="field"><label for="remRepeat">Repeat</label><select id="remRepeat">${[['none','Does not repeat'],['monthly','Every month'],['yearly','Every year']].map(([v,t])=>`<option value="${v}" ${(old?.repeat||'none')===v?'selected':''}>${t}</option>`).join('')}</select></div><div class="field span2"><label for="remBefore">Remind me</label><select id="remBefore">${BEFORE.map(([v,t])=>`<option value="${v}" ${(old?old.before:1)===v?'selected':''}>${t}</option>`).join('')}</select></div><div class="field span2"><label for="remNote">Note (optional)</label><textarea id="remNote" maxlength="500" style="min-height:70px">${escapeHTML(old?.note||'')}</textarea></div></div><div class="modal-actions">${old?'<button type="button" class="danger" id="delRem" style="margin-right:auto">Delete</button>':''}<button type="button" class="secondary" id="cancelEntry">Cancel</button><button type="submit" class="primary">Save reminder</button></div></form>`);
+ $('modalClose').onclick=closeModal;$('cancelEntry').onclick=closeModal;
+ $('remForm').onsubmit=async e=>{e.preventDefault();const rem={id:old?.id||crypto.randomUUID(),title:$('remTitle').value.trim(),date:$('remDate').value,repeat:$('remRepeat').value,before:Number($('remBefore').value),note:$('remNote').value.trim()};if(!rem.title||!validDate(rem.date))return;if(old){if(old.date!==rem.date)delete doneMap[rem.id];reminders=reminders.map(r=>r.id===rem.id?rem:r);}else reminders.push(rem);for(const k of [...notified])if(k.startsWith(rem.id+'|'))notified.delete(k);await persist();closeModal();renderReminders();checkDue();toast('Reminder saved');};
+ if(old)$('delRem').onclick=async()=>{if(!confirm('Delete this reminder?'))return;reminders=reminders.filter(r=>r.id!==old.id);delete doneMap[old.id];await persist();closeModal();renderReminders();toast('Reminder deleted');};
+}
+async function enableNotifications(){if(!('Notification' in window)){toast('Notifications are not supported in this browser');return;}const p=await Notification.requestPermission();toast(p==='granted'?'Notifications enabled':'Notifications were not allowed');renderProfile();}
+
+/* ---------- profile ---------- */
+const isStandalone=()=>matchMedia('(display-mode: standalone)').matches||navigator.standalone===true;
+const isIOS=()=>/iphone|ipad|ipod/i.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+function installPanel(){
+ if(isStandalone())return `<p>✓ FinVault is installed and running as an app.</p>`;
+ if(deferredPrompt)return `<p>Install FinVault on this device for a full-screen, app-like experience that also works offline.</p><div class="btn-row"><button class="primary" id="installBtn" type="button">⬇ Install app</button></div>`;
+ if(isIOS())return `<p>On iPhone/iPad (Safari): tap the <b>Share</b> button, then <b>Add to Home Screen</b>.</p><p>Note: the Home Screen app has its own storage. Export a backup from Safari, then use <i>Restore from a backup file</i> in the installed app.</p>`;
+ return `<p>Open your browser menu and choose <b>Install app</b> or <b>Add to Home screen</b>. (Needs the page to be served over HTTPS.)</p>`;
+}
+function renderProfile(){
+ const th=getTheme(),perm='Notification' in window?Notification.permission:'unsupported';
+ const permText=perm==='granted'?'✓ Notifications are on':perm==='denied'?'Blocked — allow notifications in your browser/site settings':perm==='unsupported'?'Not supported in this browser':'Not enabled yet';
+ const root=$('profileView');
+ root.innerHTML=`<div class="welcome"><div><h1>Profile</h1><p>Your details, appearance and security.</p></div></div><div class="panels">
+ <section class="panel"><div class="profile-head"><div class="avatar big">${escapeHTML((userName[0]||'A').toUpperCase())}</div><div><strong>${escapeHTML(userName)}</strong><div class="hint">${escapeHTML(profile.email||'Add your details below')}</div></div></div><form id="profileForm"><div class="field"><label for="pName">Full name</label><input id="pName" maxlength="60" value="${escapeHTML(userName==='there'?'':userName)}"></div><div class="field"><label for="pEmail">Email</label><input id="pEmail" type="email" maxlength="100" autocomplete="email" value="${escapeHTML(profile.email||'')}"></div><div class="field"><label for="pMobile">Mobile number</label><input id="pMobile" type="tel" maxlength="20" autocomplete="tel" value="${escapeHTML(profile.mobile||'')}"></div><div class="field"><label for="pDob">Date of birth</label><input id="pDob" type="date" value="${escapeHTML(profile.dob||'')}"></div><button class="primary" type="submit">Save profile</button></form></section>
+ <div style="display:grid;gap:16px">
+ <section class="panel"><h3>Appearance</h3><div class="seg" id="themeSeg">${[['light','☀ Light'],['dark','● Black'],['auto','Auto']].map(([v,t])=>`<button type="button" data-theme="${v}" class="${th===v?'active':''}">${t}</button>`).join('')}</div><p>Black uses a pure-black background — easy on the eyes and saves battery on OLED screens. Auto follows your device setting.</p></section>
+ <section class="panel"><h3>Reminders</h3><div class="field" style="margin-top:0"><label for="pAlert">Alert for entry dates (payment / maturity)</label><select id="pAlert">${BEFORE.map(([v,t])=>`<option value="${v}" ${Number(settings.alertDays)===v?'selected':''}>${t}</option>`).join('')}</select></div><p>${permText}. Alerts appear when the app is open; keep it installed and open it daily. Notifications show reminder titles only.</p>${perm==='default'?'<div class="btn-row"><button class="secondary" id="enableNotif" type="button">Enable notifications</button></div>':''}</section>
+ <section class="panel"><h3>Security &amp; data</h3><div class="btn-row"><button class="secondary" id="pExport" type="button">Export backup</button><button class="secondary" id="pImport" type="button">Import backup</button><button class="secondary" id="pChangePw" type="button">Change master password</button><button class="danger" id="pLock" type="button">Lock vault</button></div><p>${records.length} entries · ${reminders.length} custom reminders. Backups are encrypted with your master password.</p></section>
+ <section class="panel"><h3>Install app</h3>${installPanel()}</section></div></div>`;
+ $('profileForm').onsubmit=async e=>{e.preventDefault();userName=$('pName').value.trim()||'there';profile={email:$('pEmail').value.trim(),mobile:$('pMobile').value.trim(),dob:$('pDob').value};await persist();updateAvatar();renderProfile();toast('Profile saved');};
+ $('themeSeg').querySelectorAll('[data-theme]').forEach(b=>b.onclick=()=>{applyTheme(b.dataset.theme);renderProfile();});
+ $('pAlert').onchange=async()=>{settings.alertDays=Number($('pAlert').value);await persist();checkDue();toast('Saved');};
+ if($('enableNotif'))$('enableNotif').onclick=enableNotifications;
+ $('pExport').onclick=exportBackup;$('pImport').onclick=()=>$('importFile').click();$('pChangePw').onclick=openChangePassword;$('pLock').onclick=lockApp;
+ if($('installBtn'))$('installBtn').onclick=doInstall;
+}
+function openChangePassword(){
+ modal(`<div class="modal-head"><h2>Change master password</h2><button class="close" id="modalClose" type="button">×</button></div><form id="pwForm"><div class="field"><label for="curPw">Current password</label><input id="curPw" type="password" autocomplete="current-password" required></div><div class="field"><label for="newPw">New password</label><input id="newPw" type="password" autocomplete="new-password" minlength="10" required placeholder="At least 10 characters"></div><div class="field"><label for="newPw2">Confirm new password</label><input id="newPw2" type="password" autocomplete="new-password" required></div><div class="error" id="pwErr" role="alert"></div><div class="modal-actions"><button type="button" class="secondary" id="cancelEntry">Cancel</button><button class="primary" type="submit">Change password</button></div></form>`);
+ $('modalClose').onclick=closeModal;$('cancelEntry').onclick=closeModal;
+ $('pwForm').onsubmit=async e=>{e.preventDefault();const n1=$('newPw').value;if(n1.length<10){$('pwErr').textContent='Use at least 10 characters.';return;}if(n1!==$('newPw2').value){$('pwErr').textContent='The new passwords do not match.';return;}
+  try{const meta=await dbGet();const k=await deriveKey($('curPw').value,bytes(meta.salt));await decryptData(meta,k);}catch{$('pwErr').textContent='Current password is incorrect.';return;}
+  const salt=crypto.getRandomValues(new Uint8Array(16));key=await deriveKey(n1,salt);vaultMeta={salt};await persist();closeModal();toast('Password changed. Older backups still use the old password.');};
+}
+
+/* ---------- backup ---------- */
+async function exportBackup(){try{const meta=await dbGet();if(!meta){toast('No saved vault found');return;}const blob=new Blob([JSON.stringify({app:'FinVault',format:1,exportedAt:new Date().toISOString(),vault:meta},null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='finvault-encrypted-backup.json';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);toast('Encrypted backup exported');}catch(e){toast('Could not export backup');}}
+async function importBackup(file){
+ try{const obj=JSON.parse(await file.text());if(obj.app!=='FinVault'||!obj.vault?.cipher||!obj.vault?.salt){toast('This is not a valid FinVault backup');return;}
+  if(await dbGet()&&!confirm('Replace the vault currently saved on this device? Export a backup first if needed.'))return;
+  await dbPut(obj.vault);hasVault=true;lockApp();toast('Backup imported. Sign in with its original master password.');
+ }catch(e){toast('Could not read this backup file');}finally{$('importFile').value='';}
+}
+
+/* ---------- install (PWA) ---------- */
+function doInstall(){if(!deferredPrompt)return;deferredPrompt.prompt();deferredPrompt.userChoice.finally(()=>{deferredPrompt=null;$('installAuth').classList.add('hidden');if(view==='profile'&&key)renderProfile();});}
+addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;if(!isStandalone())$('installAuth').classList.remove('hidden');if(view==='profile'&&key)renderProfile();});
+addEventListener('appinstalled',()=>{deferredPrompt=null;$('installAuth').classList.add('hidden');toast('FinVault installed');});
+if('serviceWorker' in navigator&&/^https?:$/.test(location.protocol))addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
+
+/* ---------- wiring ---------- */
+$('authForm').addEventListener('submit',authSubmit);
+$('switchAuth').onclick=()=>{if(authMode==='register'){if(hasVault)showAuth('login');else $('importFile').click();}else $('importFile').click();};
+$('installAuth').onclick=doInstall;
+$('searchInput').addEventListener('input',render);$('addBtn').onclick=()=>openEditor();
+$('sortBtn').onclick=()=>{sortNewest=!sortNewest;$('sortBtn').textContent=sortNewest?'Recently updated ↓':'Oldest updated ↑';render();};
+$('remBtn').onclick=()=>setView(view==='reminders'?'vault':'reminders');$('avatar').onclick=()=>setView('profile');$('lockBtn').onclick=lockApp;$('exportBtn').onclick=exportBackup;$('backBtn').onclick=()=>setView('vault');
 $('importFile').addEventListener('change',e=>{if(e.target.files?.[0])importBackup(e.target.files[0]);});
-(async()=>{try{if(!window.indexedDB||!window.crypto?.subtle){$('authError').textContent='This browser does not support the required secure storage. Please use a current Safari or Chrome on HTTPS or localhost.';return;}db=await openDB();const meta=await dbGet();if(meta){showAuth('login');}else{showAuth('register');$('switchAuth').textContent='Have an encrypted backup? Import it';$('switchAuth').onclick=()=> $('importFile').click();}}catch(e){$('authError').textContent='Unable to initialize local storage in this browser.';}})();
+(async()=>{try{if(!window.indexedDB||!window.crypto?.subtle){$('authError').textContent='This browser does not support the required secure storage. Please use a current Safari or Chrome on HTTPS or localhost.';return;}db=await openDB();hasVault=!!(await dbGet());showAuth(hasVault?'login':'register');}catch(e){$('authError').textContent='Unable to initialize local storage in this browser.';}})();
 })();
 </script>
 </body>
