@@ -300,8 +300,8 @@ async function deleteEntry(id){if(!confirm('Delete this entry permanently from t
 function renderReminders(){
  const list=allReminders();updateBadge(list.filter(r=>r.due).length);
  const root=$('remindersView');
- root.innerHTML=`<div class="page-head"><button class="secondary" id="backBtn" type="button">← Back</button><h1>Reminders</h1><button class="primary" id="addRem" type="button">＋ Add</button></div><p class="page-sub">Card payments, FD &amp; bond maturities and your own dates. Entry dates are added automatically.</p><div id="remList"></div>`;
- $('addRem').onclick=()=>openReminder();$('backBtn').onclick=()=>setView('vault');
+ root.innerHTML=`<div class="page-head"><button class="secondary" id="remBack" type="button">← Back</button><h1>Reminders</h1><button class="primary" id="addRem" type="button">＋ Add</button></div><p class="page-sub">Card payments, FD &amp; bond maturities and your own dates. Entry dates are added automatically.</p><div id="remList"></div>`;
+ $('addRem').onclick=()=>openReminder();$('remBack').onclick=()=>setView('vault');
  const box=$('remList');
  if(!list.length){box.innerHTML=`<div class="empty"><div class="big">🔔</div><strong>No upcoming reminders</strong><span>Add one here, or save a Payment Date / Maturity date on an entry.</span></div>`;return;}
  list.forEach(r=>{
@@ -336,14 +336,14 @@ function renderProfile(){
  const th=getTheme(),perm='Notification' in window?Notification.permission:'unsupported';
  const permText=perm==='granted'?'✓ Notifications are on':perm==='denied'?'Blocked — allow notifications in your browser/site settings':perm==='unsupported'?'Not supported in this browser':'Not enabled yet';
  const root=$('profileView');
- root.innerHTML=`<div class="page-head"><button class="secondary" id="backBtn" type="button">← Back</button><h1>Profile</h1><span></span></div><p class="page-sub">Your details, appearance and security.</p><div class="panels">
+ root.innerHTML=`<div class="page-head"><button class="secondary" id="profBack" type="button">← Back</button><h1>Profile</h1><span></span></div><p class="page-sub">Your details, appearance and security.</p><div class="panels">
  <section class="panel"><div class="profile-head"><div class="avatar big">${escapeHTML((userName[0]||'A').toUpperCase())}</div><div><strong>${escapeHTML(userName)}</strong><div class="hint">${escapeHTML(profile.email||'Add your details below')}</div></div></div><form id="profileForm"><div class="field"><label for="pName">Full name</label><input id="pName" maxlength="60" value="${escapeHTML(userName==='there'?'':userName)}"></div><div class="field"><label for="pEmail">Email</label><input id="pEmail" type="email" maxlength="100" autocomplete="email" value="${escapeHTML(profile.email||'')}"></div><div class="field"><label for="pMobile">Mobile number</label><input id="pMobile" type="tel" maxlength="20" autocomplete="tel" value="${escapeHTML(profile.mobile||'')}"></div><div class="field"><label for="pDob">Date of birth</label><input id="pDob" type="date" value="${escapeHTML(profile.dob||'')}"></div><button class="primary" type="submit">Save profile</button></form></section>
  <div style="display:grid;gap:16px">
  <section class="panel"><h3>Appearance</h3><div class="seg" id="themeSeg">${[['light','☀ Light'],['dark','● Black'],['auto','Auto']].map(([v,t])=>`<button type="button" data-theme="${v}" class="${th===v?'active':''}">${t}</button>`).join('')}</div><p>Black uses a pure-black background — easy on the eyes and saves battery on OLED screens. Auto follows your device setting.</p></section>
  <section class="panel"><h3>Reminders</h3><div class="field" style="margin-top:0"><label for="pAlert">Alert for entry dates (payment / maturity)</label><select id="pAlert">${BEFORE.map(([v,t])=>`<option value="${v}" ${Number(settings.alertDays)===v?'selected':''}>${t}</option>`).join('')}</select></div><p>${permText}. Alerts appear when the app is open; keep it installed and open it daily. Notifications show reminder titles only.</p>${perm==='default'?'<div class="btn-row"><button class="secondary" id="enableNotif" type="button">Enable notifications</button></div>':''}</section>
  <section class="panel"><h3>Security &amp; data</h3><div class="btn-row"><button class="secondary" id="pExport" type="button">Export backup</button><button class="secondary" id="pImport" type="button">Import backup</button><button class="secondary" id="pChangePw" type="button">Change master password</button></div><p>${records.length} entries · ${reminders.length} custom reminders. Backups keep your data encrypted with your master password; attached images are included unencrypted.</p></section>
  <section class="panel"><h3>Install app</h3>${installPanel()}</section></div></div><button class="danger logout" id="pLogout" type="button">Logout</button>`;
- $('backBtn').onclick=()=>setView('vault');
+ $('profBack').onclick=()=>setView('vault');
  $('profileForm').onsubmit=async e=>{e.preventDefault();userName=$('pName').value.trim()||'there';profile={email:$('pEmail').value.trim(),mobile:$('pMobile').value.trim(),dob:$('pDob').value};await persist();updateAvatar();renderProfile();toast('Profile saved');};
  $('themeSeg').querySelectorAll('[data-theme]').forEach(b=>b.onclick=()=>{applyTheme(b.dataset.theme);renderProfile();});
  $('pAlert').onchange=async()=>{settings.alertDays=Number($('pAlert').value);await persist();checkDue();toast('Saved');};
