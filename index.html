@@ -28,6 +28,20 @@
 .vrow{display:grid;grid-template-columns:1fr auto;gap:2px 10px;padding:10px 0;border-bottom:1px solid var(--line);align-items:center}.vl{color:var(--muted);font-size:12px;grid-column:1/-1}.vv{font-weight:650;overflow-wrap:anywhere;font-size:14px}.vb{display:flex;gap:6px}
 .page-head{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:10px;margin-bottom:10px}.page-head h1{margin:0;font-size:clamp(22px,3vw,30px);letter-spacing:-.8px;text-align:center}.page-head>:first-child{justify-self:start}.page-head>:last-child{justify-self:end}.page-sub{text-align:center;color:var(--muted);margin:0 0 22px;font-size:13px}.logout{display:block;width:100%;max-width:280px;margin:24px auto 0;padding:13px;text-align:center}
 .img-strip{display:flex;gap:10px;overflow-x:auto;overflow-y:hidden;width:100%;min-width:0;padding:4px 0 8px;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain}.img-item{position:relative;flex:none}.img-item img{display:block;height:120px;width:auto;max-width:none;border-radius:12px;border:1px solid var(--line)}.img-x{position:absolute;top:6px;right:6px;width:26px;height:26px;border-radius:50%;background:#000b;color:#fff;font-size:16px;line-height:1}
+.detail-list:empty{display:none}.img-item img{cursor:zoom-in}
+.cardface{position:relative;min-height:150px;border-radius:16px;padding:14px 16px;color:#fff;background:linear-gradient(135deg,var(--cf),color-mix(in srgb,var(--cf) 45%,#000));display:flex;flex-direction:column;justify-content:space-between;gap:10px;overflow:hidden;margin:12px 0;box-shadow:0 10px 24px color-mix(in srgb,var(--cf) 30%,transparent);container-type:inline-size}.cardface::after{content:"";position:absolute;right:-34px;top:-34px;width:130px;height:130px;border-radius:50%;background:#ffffff1f;pointer-events:none}.cf-top,.cf-chip,.cf-num,.cf-bot{position:relative;z-index:1}.cf-top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}.cf-bank{display:block;font-weight:800;font-size:14px;overflow-wrap:anywhere}.cf-kind{display:block;font-size:9px;letter-spacing:1.1px;opacity:.82;font-weight:700;margin-top:2px}.cf-net{background:#fff;color:var(--net,#333);border-radius:8px;padding:3px 9px;font-weight:800;font-size:12px;white-space:nowrap}.cf-chip{width:34px;height:26px;border-radius:6px;background:linear-gradient(135deg,#f4d98a,#c9a24a)}.cf-num{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-weight:600;font-size:14px;font-size:clamp(11px,6.6cqw,17px);letter-spacing:1px;white-space:nowrap}.cf-bot{display:flex;justify-content:space-between;gap:10px}.cf-bot small{display:block;font-size:8px;letter-spacing:1px;opacity:.75}.cf-bot b{font-size:12px;font-weight:700;overflow-wrap:anywhere}
+.viewer{position:fixed;inset:0;z-index:30;background:#000000ee;display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center}.vw-stage{height:100dvh;overflow:auto;display:grid;place-items:center;-webkit-overflow-scrolling:touch}.vw-stage img{max-width:100%;max-height:100dvh;object-fit:contain;cursor:zoom-in;-webkit-user-select:none;user-select:none}.viewer.zoom .vw-stage{place-items:start}.viewer.zoom .vw-stage img{max-width:none;max-height:none;width:220%;cursor:zoom-out}.vw-close{position:fixed;top:max(12px,env(safe-area-inset-top));right:14px;z-index:3;width:42px;height:42px;border-radius:50%;background:#ffffff2e;color:#fff;font-size:24px}.vw-nav{z-index:2;width:44px;height:64px;background:#ffffff1f;color:#fff;font-size:30px;border-radius:12px;margin:0 6px}.vw-count{position:fixed;bottom:max(16px,env(safe-area-inset-bottom));left:0;right:0;text-align:center;color:#fff;font-size:13px;pointer-events:none;text-shadow:0 1px 3px #000}
+@media(max-width:560px){.viewer{grid-template-columns:minmax(0,1fr)}.vw-nav{position:fixed;top:50%;transform:translateY(-50%);width:38px;height:56px;background:#00000080;z-index:3}.vw-prev{left:4px}.vw-next{right:4px}}
+.entry{cursor:pointer}.entry:focus-visible{outline:3px solid #9bb2ff;outline-offset:2px}.entry:active{transform:scale(.985)}.entry.removing{animation:cardOut .3s cubic-bezier(.4,0,1,1) forwards!important;pointer-events:none}
+.btn-block{display:block;width:100%;margin-top:14px;padding:14px;text-align:center;border-radius:12px;font-size:15px;transition:transform .15s}.btn-block:active{transform:scale(.98)}
+html.modal-open{overflow:hidden;padding-right:var(--sbw,0px)}html.modal-open body{overflow:hidden}html.modal-open .topbar{padding-right:calc(clamp(16px,4vw,52px) + var(--sbw,0px))}
+.modal-backdrop{animation:fade .3s ease both;overscroll-behavior:contain}.modal{overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;animation:iosPop .46s cubic-bezier(.2,.9,.25,1) both}
+.modal-backdrop.closing{animation:fadeOut .28s ease both}.modal-backdrop.closing .modal{animation:iosPopOut .26s cubic-bezier(.4,0,1,1) both}.modal-backdrop.no-anim,.modal-backdrop.no-anim .modal{animation:none}
+.alert-backdrop{position:fixed;inset:0;z-index:35;background:#00000070;display:grid;place-items:center;padding:20px;-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);animation:fade .22s ease both}.alert{width:min(300px,100%);background:var(--panel);border:1px solid var(--line);border-radius:18px;text-align:center;overflow:hidden;box-shadow:0 24px 60px #0007;animation:alertIn .4s cubic-bezier(.2,1.05,.3,1) both}.alert-body{padding:20px 18px 16px}.alert-icon{width:44px;height:44px;border-radius:50%;margin:0 auto 10px;display:grid;place-items:center;background:var(--danger-bg);font-size:20px}.alert h3{margin:0 0 6px;font-size:17px}.alert p{margin:0;color:var(--muted);font-size:13px;line-height:1.45;overflow-wrap:anywhere}.alert-actions{display:grid;border-top:1px solid var(--line)}.alert-actions button{background:transparent;padding:14px;font-size:16px;color:var(--accent);transition:background .15s}.alert-actions button:active{background:var(--soft)}.alert-actions button+button{border-top:1px solid var(--line)}.alert-actions .destructive{color:var(--danger-ink);font-weight:700}.alert-actions .cancel{font-weight:600}.alert-backdrop.closing{animation:fadeOut .2s ease both}.alert-backdrop.closing .alert{animation:alertOut .18s ease-in both}
+.viewer{animation:fade .28s ease both}.vw-stage img{animation:vwIn .42s cubic-bezier(.2,.9,.25,1) both}.viewer.closing{animation:fadeOut .24s ease both}.viewer.closing .vw-stage img{animation:vwOut .24s cubic-bezier(.4,0,1,1) both}
+@media(max-width:560px){.modal-backdrop{align-items:end;padding:0}.modal-backdrop .modal{width:100%;max-height:92dvh;border-radius:22px 22px 0 0;padding:14px 19px calc(20px + env(safe-area-inset-bottom));animation:iosSheet .52s cubic-bezier(.32,.72,0,1) both}.modal-backdrop.closing .modal{animation:iosSheetOut .34s cubic-bezier(.4,0,.6,1) both}.modal-backdrop.no-anim .modal{animation:none}.modal-backdrop .modal::before{content:"";display:block;width:38px;height:5px;border-radius:3px;background:var(--dash);margin:0 auto 14px}}
+@media(prefers-reduced-motion:reduce){.modal-backdrop,.modal,.alert,.alert-backdrop,.viewer,.vw-stage img,.entry.removing{animation:none!important}}
+@keyframes fadeOut{to{opacity:0}}@keyframes iosPop{from{opacity:0;transform:translateY(16px) scale(.94)}to{opacity:1;transform:none}}@keyframes iosPopOut{to{opacity:0;transform:translateY(10px) scale(.96)}}@keyframes iosSheet{from{transform:translateY(100%)}to{transform:none}}@keyframes iosSheetOut{to{transform:translateY(100%)}}@keyframes alertIn{from{opacity:0;transform:scale(1.14)}to{opacity:1;transform:none}}@keyframes alertOut{to{opacity:0;transform:scale(.94)}}@keyframes vwIn{from{opacity:0;transform:scale(.86)}to{opacity:1;transform:none}}@keyframes vwOut{to{opacity:0;transform:scale(.9)}}@keyframes cardOut{to{opacity:0;transform:scale(.9) translateY(-8px)}}
 @keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}@keyframes fade{from{opacity:0}to{opacity:1}}
 @media(max-width:1100px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:900px){.panels{grid-template-columns:1fr}}
@@ -81,7 +95,10 @@
     </main>
   </div>
 </div>
-<div id="modalRoot"></div><div id="toastRoot"></div>
+<div id="modalRoot"></div>
+<div id="viewer" class="viewer hidden" role="dialog" aria-modal="true" aria-label="Image viewer"><button class="vw-nav vw-prev" id="vwPrev" type="button" aria-label="Previous image">‹</button><div class="vw-stage" id="vwStage"><img id="vwImg" alt=""></div><button class="vw-nav vw-next" id="vwNext" type="button" aria-label="Next image">›</button><button class="vw-close" id="vwClose" type="button" aria-label="Close viewer">×</button><div class="vw-count" id="vwCount"></div></div>
+<div id="confirmRoot"></div>
+<div id="toastRoot"></div>
 <input type="file" id="importFile" accept=".json,application/json" class="hidden">
 <script>
 (() => {
@@ -91,7 +108,7 @@ const $=id=>document.getElementById(id);
 const pad=n=>String(n).padStart(2,'0');
 const CATEGORIES=['Credit cards','Debit cards','Netbanking','Login details','FD details','BOND details','Notes'];
 const CATEGORY_META={'Credit cards':{color:'#5376e8'},'Debit cards':{color:'#16a085'},'Netbanking':{color:'#8b5cf6'},'Login details':{color:'#0f9fba'},'FD details':{color:'#e39a35'},'BOND details':{color:'#df5c83'},'Notes':{color:'#64748b'}};
-const PALETTE=['#5376e8','#16a085','#8b5cf6','#e39a35','#df5c83','#64748b','#0f9fba','#d45535','#44546a','#4c9b55'];
+const catColor=r=>(CATEGORY_META[r.category]||CATEGORY_META.Notes).color; // fixed per category
 // s = sensitive (hidden until revealed), m = show masked last 4 on the card, rem = date field that creates an automatic reminder
 const CARD=[
  {l:'Card Type',t:'select',o:['Visa','Mastercard','RuPay','Amex']},{l:'Card Holder Name'},{l:'Co Issuer Name'},{l:'Bank Name'},
@@ -113,7 +130,8 @@ const SENS_RE=/password|cvv|\bpin\b|otp|security code/i;
 const isSens=(cat,label)=>spec(cat).some(f=>f.l===label&&f.s)||SENS_RE.test(label);
 const BEFORE=[[0,'On the day'],[1,'1 day before'],[2,'2 days before'],[3,'3 days before'],[5,'5 days before'],[7,'1 week before'],[14,'2 weeks before'],[30,'1 month before']];
 
-let db, records=[], reminders=[], doneMap={}, settings={alertDays:3}, profile={}, key=null, vaultMeta=null, userName='there', currentCategory='All', view='vault', sortNewest=true, lastUpdated=0, authMode='register', hasVault=false, timer=null, deferredPrompt=null;
+const DEF_SETTINGS={alertDays:3,autoLock:5,leaveLock:60,clipClear:30};
+let db, records=[], reminders=[], doneMap={}, settings={...DEF_SETTINGS}, profile={}, key=null, vaultMeta=null, userName='there', currentCategory='All', view='vault', sortNewest=true, lastUpdated=0, authMode='register', hasVault=false, timer=null, deferredPrompt=null;
 const notified=new Set();
 
 /* ---------- storage + crypto ---------- */
@@ -131,7 +149,7 @@ function imgReplaceAll(list){return new Promise((res,rej)=>{const tx=db.transact
 function readImage(file){return new Promise((res,rej)=>{const fr=new FileReader();fr.onerror=()=>rej(fr.error);fr.onload=()=>{const img=new Image();img.onerror=()=>rej(new Error('bad image'));img.onload=()=>{const M=1600,k=Math.min(1,M/Math.max(img.width,img.height)),w=Math.round(img.width*k),h=Math.round(img.height*k),c=document.createElement('canvas');c.width=w;c.height=h;const x=c.getContext('2d');x.fillStyle='#fff';x.fillRect(0,0,w,h);x.drawImage(img,0,0,w,h);res(c.toDataURL('image/jpeg',0.82));};img.src=fr.result;};fr.readAsDataURL(file);});}
 const bytes=a=>new Uint8Array(a);
 async function persist(){if(!key||!vaultMeta)return;try{const blob=await encryptData({userName,profile,records,reminders,done:doneMap,settings,lastUpdated:Date.now()});await dbPut(blob);lastUpdated=blob.updatedAt;}catch(e){console.error(e);toast('Could not save — please export a backup');}}
-function loadData(data,meta){records=Array.isArray(data.records)?data.records:[];reminders=Array.isArray(data.reminders)?data.reminders:[];doneMap=data.done||{};settings={alertDays:3,...(data.settings||{})};profile=data.profile||{};userName=data.userName||'there';lastUpdated=data.lastUpdated||meta?.updatedAt||0;}
+function loadData(data,meta){records=Array.isArray(data.records)?data.records:[];reminders=Array.isArray(data.reminders)?data.reminders:[];doneMap=data.done||{};settings={...DEF_SETTINGS,...(data.settings||{})};profile=data.profile||{};userName=data.userName||'there';lastUpdated=data.lastUpdated||meta?.updatedAt||0;}
 
 /* ---------- helpers ---------- */
 function toast(m){$('toastRoot').innerHTML='';const d=document.createElement('div');d.className='toast';d.textContent=m;$('toastRoot').appendChild(d);setTimeout(()=>d.remove(),3200);}
@@ -139,7 +157,15 @@ const escapeHTML=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;'
 const normalize=s=>String(s??'').toLocaleLowerCase();
 const maskVal=v=>'•••• '+String(v).replace(/\s/g,'').slice(-4);
 const subtitle=r=>r.institution||r.fields?.['Bank Name']||r.fields?.['Bank / company']||r.fields?.Issuer||r.fields?.Username||r.fields?.Topic||r.category;
-function copyText(t){if(navigator.clipboard?.writeText)navigator.clipboard.writeText(t).then(()=>toast('Copied'),()=>toast('Copy failed'));else toast('Copy not supported here');}
+let clipTimer=null,clipDue=0;
+function clipClearNow(){if(!clipDue)return;clipDue=0;clearTimeout(clipTimer);try{navigator.clipboard?.writeText('').catch(()=>{});}catch{}}
+function clipCheck(){if(clipDue&&Date.now()>=clipDue)clipClearNow();}
+function copyText(t,sensitive){
+ if(!navigator.clipboard?.writeText){toast('Copy not supported here');return;}
+ navigator.clipboard.writeText(t).then(()=>{const secs=Number(settings.clipClear)||0;
+  if(sensitive&&secs>0){clearTimeout(clipTimer);clipDue=Date.now()+secs*1000;clipTimer=setTimeout(clipClearNow,secs*1000);toast('Copied — clipboard clears in '+secs+'s');}else toast('Copied');
+ },()=>toast('Copy failed'));
+}
 function getTheme(){try{return localStorage.getItem('finvault_theme')||'light';}catch{return 'light';}}
 function applyTheme(p){try{localStorage.setItem('finvault_theme',p);}catch{}const dark=p==='dark'||(p==='auto'&&matchMedia('(prefers-color-scheme: dark)').matches);document.documentElement.dataset.theme=dark?'dark':'light';$('themeColor').content=dark?'#000000':'#f5f6fa';}
 matchMedia('(prefers-color-scheme: dark)').addEventListener?.('change',()=>{if(getTheme()==='auto')applyTheme('auto');});
@@ -190,7 +216,7 @@ async function authSubmit(e){
   if(authMode==='register'){
    if(pw!==$('confirmPassword').value){$('authError').textContent='The passwords do not match.';return;}
    if(await dbGet()){hasVault=true;showAuth('login');$('authError').textContent='A vault already exists on this device. Sign in instead.';return;}
-   userName=$('displayName').value.trim()||'there';const salt=crypto.getRandomValues(new Uint8Array(16));key=await deriveKey(pw,salt);vaultMeta={salt};records=[];reminders=[];doneMap={};profile={};settings={alertDays:3};await persist();hasVault=true;await enterApp();
+   userName=$('displayName').value.trim()||'there';const salt=crypto.getRandomValues(new Uint8Array(16));key=await deriveKey(pw,salt);vaultMeta={salt};records=[];reminders=[];doneMap={};profile={};settings={...DEF_SETTINGS};await persist();hasVault=true;await enterApp();
   }else{
    const meta=await dbGet();if(!meta){$('authError').textContent='No vault exists here. Create one first or import a backup.';return;}
    const k=await deriveKey(pw,bytes(meta.salt));let data;try{data=await decryptData(meta,k);}catch{$('authError').textContent='Incorrect password, or the vault data is damaged.';return;}
@@ -201,10 +227,16 @@ async function authSubmit(e){
 async function enterApp(){
  $('authScreen').classList.add('hidden');$('app').classList.remove('hidden');
  const hr=new Date().getHours();$('greeting').textContent=(hr<12?'Good morning':hr<18?'Good afternoon':'Good evening')+' 👋';
- updateAvatar();currentCategory='All';setView('vault','All');checkDue();clearInterval(timer);timer=setInterval(checkDue,60000);
+ updateAvatar();currentCategory='All';setView('vault','All');checkDue();clearInterval(timer);timer=setInterval(checkDue,60000);startLockTimer();requestPersist().then(()=>{if(view==='profile'&&key)renderProfile();});
 }
-function lockApp(){clearInterval(timer);key=null;records=[];reminders=[];doneMap={};profile={};vaultMeta=null;notified.clear();closeModal();['cards','profileView','remindersView','dueBanner'].forEach(i=>$(i).innerHTML='');$('searchInput').value='';$('app').classList.add('hidden');$('authScreen').classList.remove('hidden');showAuth('login');}
-document.addEventListener('visibilitychange',()=>{if(!document.hidden)checkDue();});
+function lockApp(reason){clipClearNow();clearInterval(timer);clearInterval(lockTick);key=null;records=[];reminders=[];doneMap={};profile={};settings={...DEF_SETTINGS};vaultMeta=null;notified.clear();closeModal(true);closeViewer(true);$('confirmRoot').innerHTML='';syncLock();['cards','profileView','remindersView','dueBanner'].forEach(i=>$(i).innerHTML='');$('searchInput').value='';$('app').classList.add('hidden');$('authScreen').classList.remove('hidden');showAuth('login');if(typeof reason==='string'&&reason)$('authError').textContent=reason;}
+document.addEventListener('visibilitychange',()=>{
+ if(document.hidden){hiddenAt=Date.now();if(key&&Number(settings.leaveLock)===0&&Date.now()>suspendUntil)lockApp('Locked when you left the app.');return;}
+ const away=hiddenAt?Date.now()-hiddenAt:0;hiddenAt=0;if(!key)return;
+ const lt=Number(settings.leaveLock),m=Number(settings.autoLock)||0;
+ if(Date.now()>suspendUntil){if(lt>0&&away>=lt*1000){lockApp('Locked while you were away.');return;}if(m&&away>=m*60000){lockApp('Locked after '+m+' minute'+(m>1?'s':'')+' of inactivity.');return;}}
+ checkDue();clipCheck();
+});
 
 /* ---------- navigation ---------- */
 function setView(v,cat){
@@ -220,8 +252,9 @@ function renderStats(){$('totalStat').textContent=records.length;$('categoryStat
 function render(){
  renderStats();
  const due=allReminders().filter(r=>r.due);updateBadge(due.length);
- $('dueBanner').innerHTML=due.length?`<div class="due-banner"><span>🔔 ${due.length} reminder${due.length>1?'s':''} need attention: ${escapeHTML(due[0].title)}${due.length>1?` +${due.length-1} more`:''}</span><button class="secondary" id="bannerBtn" type="button">View</button></div>`:'';
- if($('bannerBtn'))$('bannerBtn').onclick=()=>setView('reminders');
+ const stale=records.length>0&&(!settings.lastBackup||Date.now()-settings.lastBackup>7*864e5);
+ $('dueBanner').innerHTML=(due.length?`<div class="due-banner"><span>🔔 ${due.length} reminder${due.length>1?'s':''} need attention: ${escapeHTML(due[0].title)}${due.length>1?` +${due.length-1} more`:''}</span><button class="secondary" id="bannerBtn" type="button">View</button></div>`:'')+(stale?`<div class="due-banner"><span>💾 ${settings.lastBackup?'Last backup was '+ago(settings.lastBackup):'No backup yet'} — save a copy to Files or iCloud Drive so you never lose your vault.</span><button class="secondary" id="backupBannerBtn" type="button">Back up now</button></div>`:'');
+ if($('bannerBtn'))$('bannerBtn').onclick=()=>setView('reminders');if($('backupBannerBtn'))$('backupBannerBtn').onclick=exportBackup;
  const q=normalize($('searchInput').value.trim());
  const filtered=records.filter(r=>(currentCategory==='All'||r.category===currentCategory)&&(!q||normalize([r.title,r.category,r.institution,r.notes,...Object.entries(r.fields||{}).filter(([k])=>!isSens(r.category,k)).map(e=>e[1])].join(' ')).includes(q)));
  filtered.sort((a,b)=>(sortNewest?1:-1)*((b.updatedAt||b.createdAt||0)-(a.updatedAt||a.createdAt||0)));
@@ -229,19 +262,49 @@ function render(){
  const root=$('cards');root.innerHTML='';
  if(!filtered.length){const d=document.createElement('div');d.className='empty';d.innerHTML=`<div class="big">${q?'⌕':'✦'}</div><strong>${q?'No matching details':'Nothing here yet'}</strong><span>${q?'Try another keyword or category.':'Add your first entry to start building your vault.'}</span><div style="margin-top:18px">${!q?'<button class="primary" id="emptyAdd">＋ Add</button>':''}</div>`;root.appendChild(d);if($('emptyAdd'))$('emptyAdd').onclick=()=>openEditor();return;}
  filtered.forEach((r,i)=>{
-  const color=r.color||(CATEGORY_META[r.category]||CATEGORY_META.Notes).color;
+  const color=catColor(r);const isCard=r.category==='Credit cards'||r.category==='Debit cards';
   const rows=[];spec(r.category).forEach(f=>{const v=r.fields?.[f.l];if(!v)return;if(f.s){if(f.m)rows.push([f.l,maskVal(v)]);}else rows.push([f.l,v]);});
-  const card=document.createElement('article');card.className='entry';card.style.setProperty('--card-color',color);card.style.animationDelay=Math.min(i*35,240)+'ms';
-  card.innerHTML=`<div class="entry-head"><span class="category-tag">${escapeHTML(r.category)}</span><button class="entry-menu" aria-label="Edit ${escapeHTML(r.title)}" title="Edit" data-edit="${r.id}">⋯</button></div><h3>${escapeHTML(r.title)}</h3><p class="institution">${escapeHTML(subtitle(r))}</p><div class="detail-list">${rows.slice(0,3).map(([k,v])=>`<div class="detail-row"><span>${escapeHTML(k)}</span><span>${escapeHTML(v)}</span></div>`).join('')}${r.notes?`<div class="detail-row"><span>Description</span><span>${escapeHTML(r.notes.length>65?r.notes.slice(0,62)+'…':r.notes)}</span></div>`:''}</div><div class="entry-footer"><button class="mini-btn" data-view="${r.id}">View details</button><button class="mini-btn" data-edit="${r.id}">Edit</button></div>`;
+  const card=document.createElement('article');card.className='entry';card.dataset.id=r.id;card.tabIndex=0;card.onclick=e=>{if(e.target.closest('button,a,input,select,textarea'))return;viewEntry(r.id);};card.onkeydown=e=>{if((e.key==='Enter'||e.key===' ')&&e.target===card){e.preventDefault();viewEntry(r.id);}};card.style.setProperty('--card-color',color);card.style.animationDelay=Math.min(i*35,240)+'ms';
+  card.innerHTML=`<div class="entry-head"><span class="category-tag">${escapeHTML(r.category)}</span><button class="entry-menu" aria-label="Edit ${escapeHTML(r.title)}" title="Edit" data-edit="${r.id}">⋯</button></div><h3>${escapeHTML(r.title)}</h3>${isCard?cardFace(r):`<p class="institution">${escapeHTML(subtitle(r))}</p>`}<div class="detail-list">${(isCard?rows.filter(([k])=>k==='Card Limit'||k==='Payment Date'):rows.slice(0,3)).map(([k,v])=>`<div class="detail-row"><span>${escapeHTML(k)}</span><span>${escapeHTML(v)}</span></div>`).join('')}${r.notes?`<div class="detail-row"><span>Description</span><span>${escapeHTML(r.notes.length>65?r.notes.slice(0,62)+'…':r.notes)}</span></div>`:''}</div><div class="entry-footer"><button class="mini-btn" data-view="${r.id}">View details</button><button class="mini-btn" data-edit="${r.id}">Edit</button></div>`;
   root.appendChild(card);
  });
  root.querySelectorAll('[data-edit]').forEach(b=>b.onclick=()=>openEditor(b.dataset.edit));root.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>viewEntry(b.dataset.view));
 }
 
 /* ---------- modal ---------- */
-function modal(html){$('modalRoot').innerHTML=`<div class="modal-backdrop" id="backdrop"><section class="modal" role="dialog" aria-modal="true">${html}</section></div>`;$('backdrop').addEventListener('click',e=>{if(e.target.id==='backdrop')closeModal();});$('modalRoot').querySelectorAll('.eye').forEach(b=>b.onclick=()=>{const i=b.previousElementSibling;i.type=i.type==='password'?'text':'password';});}
-function closeModal(){$('modalRoot').innerHTML='';}
-document.addEventListener('keydown',e=>{if(e.key==='Escape'&&$('modalRoot').innerHTML)closeModal();});
+let modalTimer=null;
+const reduceMotion=()=>matchMedia('(prefers-reduced-motion: reduce)').matches;
+function lockPage(on){const h=document.documentElement;if(on&&!h.classList.contains('modal-open')){h.style.setProperty('--sbw',Math.max(0,innerWidth-h.clientWidth)+'px');h.classList.add('modal-open');}else if(!on)h.classList.remove('modal-open');}
+function syncLock(){lockPage(!!$('modalRoot').innerHTML||!$('viewer').classList.contains('hidden')||!!$('confirmRoot').innerHTML);}
+function modal(html){
+ clearTimeout(modalTimer);
+ const swap=!!$('modalRoot').querySelector('.modal-backdrop:not(.closing)');
+ $('modalRoot').innerHTML=`<div class="modal-backdrop${swap?' no-anim':''}" id="backdrop"><section class="modal" role="dialog" aria-modal="true">${html}</section></div>`;
+ lockPage(true);
+ $('backdrop').addEventListener('click',e=>{if(e.target.id==='backdrop')closeModal();});
+ $('modalRoot').querySelectorAll('.eye').forEach(b=>b.onclick=()=>{const i=b.previousElementSibling;i.type=i.type==='password'?'text':'password';});
+}
+function closeModal(now){
+ clearTimeout(modalTimer);const bd=$('backdrop');
+ if(!bd||now===true||reduceMotion()){$('modalRoot').innerHTML='';syncLock();return;}
+ bd.classList.add('closing');
+ modalTimer=setTimeout(()=>{$('modalRoot').innerHTML='';syncLock();},320);
+}
+/* iOS-style alert for confirmations */
+function confirmDialog({title,message,ok='Delete permanently',cancel='Cancel',danger=true}){
+ return new Promise(res=>{
+  const root=$('confirmRoot');
+  root.innerHTML=`<div class="alert-backdrop" id="alBackdrop"><div class="alert" role="alertdialog" aria-modal="true" aria-labelledby="alTitle" aria-describedby="alMsg"><div class="alert-body"><div class="alert-icon">${danger?'🗑':'?'}</div><h3 id="alTitle"></h3><p id="alMsg"></p></div><div class="alert-actions"><button type="button" class="${danger?'destructive':''}" id="alOk"></button><button type="button" class="cancel" id="alCancel"></button></div></div></div>`;
+  $('alTitle').textContent=title;$('alMsg').textContent=message;$('alOk').textContent=ok;$('alCancel').textContent=cancel;
+  syncLock();let done=false;
+  const onKey=e=>{if(e.key==='Escape'){e.stopPropagation();finish(false);}};
+  const finish=v=>{if(done)return;done=true;document.removeEventListener('keydown',onKey,true);const bd=$('alBackdrop');if(bd&&!reduceMotion()){bd.classList.add('closing');setTimeout(()=>{root.innerHTML='';syncLock();},200);}else{root.innerHTML='';syncLock();}res(v);};
+  document.addEventListener('keydown',onKey,true);
+  $('alOk').onclick=()=>finish(true);$('alCancel').onclick=()=>finish(false);$('alBackdrop').onclick=e=>{if(e.target.id==='alBackdrop')finish(false);};
+  $('alCancel').focus();
+ });
+}
+document.addEventListener('keydown',e=>{const open=!$('viewer').classList.contains('hidden');if(e.key==='Escape'){if(open)closeViewer();else if($('modalRoot').innerHTML)closeModal();}else if(open&&e.key==='ArrowRight')stepViewer(1);else if(open&&e.key==='ArrowLeft')stepViewer(-1);});
 
 function fieldInput(f,val,idx){
  const L=escapeHTML(f.l),v=escapeHTML(val||''),id='f_'+idx;
@@ -262,22 +325,20 @@ function deriveTitle(cat,f){
 function openEditor(id=null){
  const old=id?records.find(r=>r.id===id):null;
  const cat=old?.category||(CATEGORIES.includes(currentCategory)?currentCategory:'Credit cards');
- let color=old?.color||CATEGORY_META[cat].color;
- modal(`<div class="modal-head"><h2>${old?'Edit entry':'Add new entry'}</h2><button class="close" id="modalClose" type="button">×</button></div><form id="entryForm"><div class="form-grid"><div class="field span2"><label for="entryCategory">Category</label><select id="entryCategory">${CATEGORIES.map(c=>`<option ${c===cat?'selected':''}>${escapeHTML(c)}</option>`).join('')}</select></div><div class="field span2"><label for="entryTitle">Title</label><input id="entryTitle" maxlength="100" placeholder="Optional — auto-filled from the details below" value="${escapeHTML(old?.title||'')}"></div><div id="dynamicFields" class="form-grid span2">${fieldsMarkup(cat,old?.category===cat?old.fields:null)}</div><div class="field span2"><label for="entryNotes">Description (optional)</label><textarea id="entryNotes" maxlength="4000" placeholder="Add helpful context. Avoid storing OTPs.">${escapeHTML(old?.notes||'')}</textarea></div><div class="field span2"><label>Images</label><div class="img-strip hidden" id="imgStrip"></div><div><button type="button" class="secondary" id="addImgBtn">＋ Add images</button></div><span class="hint">Images are saved on this device as plain base64 — not encrypted.</span><input type="file" id="imgInput" accept="image/*" multiple class="hidden"></div><div class="field span2"><label>Accent color</label><div class="color-options" id="colorOptions">${PALETTE.map(c=>`<button type="button" class="swatch ${c===color?'selected':''}" data-color="${c}" style="background:${c}" aria-label="Choose ${c}" title="${c}"></button>`).join('')}</div></div></div><div class="modal-actions">${old?'<button type="button" class="danger" id="deleteEntry" style="margin-right:auto">Delete</button>':''}<button type="button" class="secondary" id="cancelEntry">Cancel</button><button type="submit" class="primary">Save entry</button></div></form>`);
+ modal(`<div class="modal-head"><h2>${old?'Edit entry':'Add new entry'}</h2><button class="close" id="modalClose" type="button">×</button></div><form id="entryForm"><div class="form-grid"><div class="field span2"><label for="entryCategory">Category</label><select id="entryCategory">${CATEGORIES.map(c=>`<option ${c===cat?'selected':''}>${escapeHTML(c)}</option>`).join('')}</select></div><div class="field span2"><label for="entryTitle">Title</label><input id="entryTitle" maxlength="100" placeholder="Optional — auto-filled from the details below" value="${escapeHTML(old?.title||'')}"></div><div id="dynamicFields" class="form-grid span2">${fieldsMarkup(cat,old?.category===cat?old.fields:null)}</div><div class="field span2"><label for="entryNotes">Description (optional)</label><textarea id="entryNotes" maxlength="4000" placeholder="Add helpful context. Avoid storing OTPs.">${escapeHTML(old?.notes||'')}</textarea></div><div class="field span2"><label>Images</label><div class="img-strip hidden" id="imgStrip"></div><div><button type="button" class="secondary" id="addImgBtn">＋ Add images</button></div><span class="hint">Images are saved on this device as plain base64 — not encrypted.</span><input type="file" id="imgInput" accept="image/*" multiple class="hidden"></div></div><div class="modal-actions"><button type="button" class="secondary" id="cancelEntry">Cancel</button><button type="submit" class="primary">Save entry</button></div>${old?'<button type="button" class="danger btn-block" id="deleteEntry">Delete entry</button>':''}</form>`);
  $('modalClose').onclick=closeModal;$('cancelEntry').onclick=closeModal;
  const entryId=old?.id||crypto.randomUUID();let imgs=[];
- const drawStrip=()=>{const st=$('imgStrip');if(!st)return;st.innerHTML='';imgs.forEach((src,i)=>{const w=document.createElement('div');w.className='img-item';const im=document.createElement('img');im.src=src;im.alt='Attachment '+(i+1);const x=document.createElement('button');x.type='button';x.className='img-x';x.textContent='×';x.setAttribute('aria-label','Remove image');x.onclick=()=>{imgs.splice(i,1);drawStrip();};w.append(im,x);st.appendChild(w);});st.classList.toggle('hidden',!imgs.length);};
+ const drawStrip=()=>{const st=$('imgStrip');if(!st)return;st.innerHTML='';imgs.forEach((src,i)=>{const w=document.createElement('div');w.className='img-item';const im=document.createElement('img');im.src=src;im.alt='Attachment '+(i+1);im.onclick=()=>openViewer(imgs,i);const x=document.createElement('button');x.type='button';x.className='img-x';x.textContent='×';x.setAttribute('aria-label','Remove image');x.onclick=()=>{imgs.splice(i,1);drawStrip();};w.append(im,x);st.appendChild(w);});st.classList.toggle('hidden',!imgs.length);};
  if(old)imgGet(old.id).then(l=>{if($('imgStrip')&&!imgs.length){imgs=l.slice();drawStrip();}});
- $('addImgBtn').onclick=()=>$('imgInput').click();
+ $('addImgBtn').onclick=()=>{suspendLock(120000);$('imgInput').click();};
  $('imgInput').onchange=async e=>{const files=[...e.target.files];e.target.value='';for(const f of files){try{imgs.push(await readImage(f));}catch{toast('Could not read '+f.name);}}drawStrip();};
- $('entryCategory').onchange=()=>{const cur={};$('dynamicFields').querySelectorAll('[data-field]').forEach(i=>cur[i.dataset.field]=i.value);const c=$('entryCategory').value;color=CATEGORY_META[c].color;$('dynamicFields').innerHTML=fieldsMarkup(c,{...(old?.category===c?old.fields:{}),...cur});$('dynamicFields').querySelectorAll('.eye').forEach(b=>b.onclick=()=>{const i=b.previousElementSibling;i.type=i.type==='password'?'text':'password';});$('colorOptions').querySelectorAll('.swatch').forEach(s=>s.classList.toggle('selected',s.dataset.color===color));};
- $('colorOptions').querySelectorAll('[data-color]').forEach(b=>b.onclick=()=>{color=b.dataset.color;$('colorOptions').querySelectorAll('.swatch').forEach(s=>s.classList.toggle('selected',s===b));});
+ $('entryCategory').onchange=()=>{const cur={};$('dynamicFields').querySelectorAll('[data-field]').forEach(i=>cur[i.dataset.field]=i.value);const c=$('entryCategory').value;$('dynamicFields').innerHTML=fieldsMarkup(c,{...(old?.category===c?old.fields:{}),...cur});$('dynamicFields').querySelectorAll('.eye').forEach(b=>b.onclick=()=>{const i=b.previousElementSibling;i.type=i.type==='password'?'text':'password';});};
  $('entryForm').onsubmit=async e=>{
   e.preventDefault();const category=$('entryCategory').value;const fields={};
   if(old&&old.category===category)Object.entries(old.fields||{}).forEach(([k,v])=>{if(!spec(category).some(f=>f.l===k))fields[k]=v;});
   $('dynamicFields').querySelectorAll('[data-field]').forEach(i=>{if(i.value.trim())fields[i.dataset.field]=i.value.trim();});
   const now=Date.now();
-  const entry={id:entryId,category,title:$('entryTitle').value.trim()||deriveTitle(category,fields),institution:old?.institution||'',fields,notes:$('entryNotes').value.trim(),color,createdAt:old?.createdAt||now,updatedAt:now};
+  const entry={id:entryId,category,title:$('entryTitle').value.trim()||deriveTitle(category,fields),institution:old?.institution||'',fields,notes:$('entryNotes').value.trim(),createdAt:old?.createdAt||now,updatedAt:now};
   if(old)records=records.map(r=>r.id===old.id?entry:r);else records.unshift(entry);
   try{await imgPut(entryId,imgs);}catch{toast('Images could not be saved');}await persist();closeModal();render();checkDue();toast(old?'Entry updated securely':'Entry saved securely');
  };
@@ -287,39 +348,48 @@ function viewEntry(id){
  const r=records.find(x=>x.id===id);if(!r)return;const meta=CATEGORY_META[r.category]||CATEGORY_META.Notes;
  const rows=[];spec(r.category).forEach(f=>{const v=r.fields?.[f.l];if(v)rows.push([f.l,v,!!f.s]);});
  Object.entries(r.fields||{}).forEach(([k,v])=>{if(!spec(r.category).some(f=>f.l===k)&&v)rows.push([k,v,SENS_RE.test(k)]);});
- modal(`<div class="modal-head"><h2>${escapeHTML(r.title)}</h2><button class="close" id="modalClose" type="button">×</button></div><div style="margin-bottom:10px"><span class="category-tag" style="--card-color:${r.color||meta.color}">${escapeHTML(r.category)}</span></div><p style="color:var(--muted);margin:0 0 6px">${escapeHTML(subtitle(r))}</p><div class="img-strip hidden" id="viewImgs"></div><div>${rows.map(([k,v,s],i)=>`<div class="vrow"><span class="vl">${escapeHTML(k)}</span><span class="vv" id="vv${i}"></span><span class="vb">${s?`<button class="mini-btn" data-show="${i}" type="button">Show</button>`:''}<button class="mini-btn" data-copy="${i}" type="button">Copy</button></span></div>`).join('')}${r.notes?`<div style="padding-top:14px"><div style="font-size:12px;color:var(--muted);margin-bottom:5px">Description</div><div style="white-space:pre-wrap;overflow-wrap:anywhere">${escapeHTML(r.notes)}</div></div>`:''}</div><div class="modal-actions"><button class="secondary" id="cancelEntry" type="button">Close</button><button class="primary" id="editFromView" type="button">Edit entry</button></div>`);
+ modal(`<div class="modal-head"><h2>${escapeHTML(r.title)}</h2><button class="close" id="modalClose" type="button">×</button></div><div style="margin-bottom:10px"><span class="category-tag" style="--card-color:${catColor(r)}">${escapeHTML(r.category)}</span></div>${(r.category==='Credit cards'||r.category==='Debit cards')?cardFace(r):`<p style="color:var(--muted);margin:0 0 6px">${escapeHTML(subtitle(r))}</p>`}<div class="img-strip hidden" id="viewImgs"></div><div>${rows.map(([k,v,s],i)=>`<div class="vrow"><span class="vl">${escapeHTML(k)}</span><span class="vv" id="vv${i}"></span><span class="vb">${s?`<button class="mini-btn" data-show="${i}" type="button">Show</button>`:''}<button class="mini-btn" data-copy="${i}" type="button">Copy</button></span></div>`).join('')}${r.notes?`<div style="padding-top:14px"><div style="font-size:12px;color:var(--muted);margin-bottom:5px">Description</div><div style="white-space:pre-wrap;overflow-wrap:anywhere">${escapeHTML(r.notes)}</div></div>`:''}</div><div class="modal-actions"><button class="secondary" id="cancelEntry" type="button">Close</button><button class="primary" id="editFromView" type="button">Edit entry</button></div>`);
  rows.forEach(([k,v,s],i)=>{$('vv'+i).textContent=s?'••••••••':v;});
  $('modalRoot').querySelectorAll('[data-show]').forEach(b=>b.onclick=()=>{const i=+b.dataset.show,el=$('vv'+i),hidden=b.textContent==='Show';el.textContent=hidden?rows[i][1]:'••••••••';b.textContent=hidden?'Hide':'Show';});
- $('modalRoot').querySelectorAll('[data-copy]').forEach(b=>b.onclick=()=>copyText(rows[+b.dataset.copy][1]));
+ $('modalRoot').querySelectorAll('[data-copy]').forEach(b=>b.onclick=()=>copyText(rows[+b.dataset.copy][1],rows[+b.dataset.copy][2]));
  $('modalClose').onclick=closeModal;$('cancelEntry').onclick=closeModal;$('editFromView').onclick=()=>openEditor(id);
- imgGet(id).then(l=>{const st=$('viewImgs');if(!st||!l.length)return;l.forEach((src,i)=>{const w=document.createElement('div');w.className='img-item';const im=document.createElement('img');im.src=src;im.alt='Attachment '+(i+1);w.appendChild(im);st.appendChild(w);});st.classList.remove('hidden');});
+ imgGet(id).then(l=>{const st=$('viewImgs');if(!st||!l.length)return;l.forEach((src,i)=>{const w=document.createElement('div');w.className='img-item';const im=document.createElement('img');im.src=src;im.alt='Attachment '+(i+1);im.onclick=()=>openViewer(l,i);w.appendChild(im);st.appendChild(w);});st.classList.remove('hidden');});
 }
-async function deleteEntry(id){if(!confirm('Delete this entry permanently from this device?'))return;records=records.filter(r=>r.id!==id);try{await imgPut(id,[]);}catch{}await persist();closeModal();render();toast('Entry deleted');}
+async function deleteEntry(id){
+ const r=records.find(x=>x.id===id);if(!r)return;
+ const ok=await confirmDialog({title:'Delete permanently?',message:`“${r.title}” and its images will be permanently deleted from this device. This can’t be undone.`});
+ if(!ok)return;
+ records=records.filter(x=>x.id!==id);try{await imgPut(id,[]);}catch{}await persist();
+ closeModal();
+ const el=document.querySelector(`.entry[data-id="${id}"]`);if(el&&!reduceMotion()){el.classList.add('removing');await new Promise(r=>setTimeout(r,320));}
+ if(view==='reminders')renderReminders();else render();toast('Entry deleted');
+}
 
 /* ---------- reminders view ---------- */
 function renderReminders(){
  const list=allReminders();updateBadge(list.filter(r=>r.due).length);
  const root=$('remindersView');
- root.innerHTML=`<div class="page-head"><button class="secondary" id="remBack" type="button">← Back</button><h1>Reminders</h1><button class="primary" id="addRem" type="button">＋ Add</button></div><p class="page-sub">Card payments, FD &amp; bond maturities and your own dates. Entry dates are added automatically.</p><div id="remList"></div>`;
- $('addRem').onclick=()=>openReminder();$('remBack').onclick=()=>setView('vault');
+ root.innerHTML=`<div class="page-head"><button class="secondary" id="remBack" type="button">← Back</button><h1>Reminders</h1><button class="primary" id="addRem" type="button">＋ Add</button></div><p class="page-sub">Card payments, FD &amp; bond maturities and your own dates. Entry dates are added automatically.</p>${list.length?'<div class="btn-row" style="justify-content:center;margin:-6px 0 6px"><button class="secondary" id="remAllIcs" type="button">📅 Add all to calendar</button></div><p class="page-sub" style="font-size:12px;margin-bottom:18px">Gets alerts even when the app is closed. If you change a reminder, download it again — calendar apps update the event you added before.</p>':''}<div id="remList"></div>`;
+ $('addRem').onclick=()=>openReminder();$('remBack').onclick=()=>setView('vault');if($('remAllIcs'))$('remAllIcs').onclick=()=>exportICS(list,'finvault-reminders.ics');
  const box=$('remList');
  if(!list.length){box.innerHTML=`<div class="empty"><div class="big">🔔</div><strong>No upcoming reminders</strong><span>Add one here, or save a Payment Date / Maturity date on an entry.</span></div>`;return;}
  list.forEach(r=>{
   const cls=r.days<0?'over':r.due?'soon':'';const mon=r.next.toLocaleDateString(undefined,{month:'short'});
   const row=document.createElement('div');row.className='rem';
-  row.innerHTML=`<div class="rem-date"><b>${r.next.getDate()}</b><span>${escapeHTML(mon)}</span></div><div class="rem-body"><strong>${escapeHTML(r.title)}</strong><div class="rem-sub">${r.next.toLocaleDateString(undefined,{weekday:'short',year:'numeric',month:'short',day:'numeric'})} · ${r.repeat==='monthly'?'Every month':r.repeat==='yearly'?'Every year':'One time'}${r.derived?' · From an entry':''}${r.note?' · '+escapeHTML(r.note):''}</div></div><span class="pill ${cls}">${whenText(r.days)}</span><div class="rem-actions"><button class="mini-btn" data-done="${escapeHTML(r.id)}">✓ Done</button>${r.derived?`<button class="mini-btn" data-open="${r.entryId}">Open</button>`:`<button class="mini-btn" data-editrem="${r.id}">Edit</button>`}</div>`;
+  row.innerHTML=`<div class="rem-date"><b>${r.next.getDate()}</b><span>${escapeHTML(mon)}</span></div><div class="rem-body"><strong>${escapeHTML(r.title)}</strong><div class="rem-sub">${r.next.toLocaleDateString(undefined,{weekday:'short',year:'numeric',month:'short',day:'numeric'})} · ${r.repeat==='monthly'?'Every month':r.repeat==='yearly'?'Every year':'One time'}${r.derived?' · From an entry':''}${r.note?' · '+escapeHTML(r.note):''}</div></div><span class="pill ${cls}">${whenText(r.days)}</span><div class="rem-actions"><button class="mini-btn" data-done="${escapeHTML(r.id)}">✓ Done</button><button class="mini-btn" data-ics="${escapeHTML(r.id)}">📅 Calendar</button>${r.derived?`<button class="mini-btn" data-open="${r.entryId}">Open</button>`:`<button class="mini-btn" data-editrem="${r.id}">Edit</button>`}</div>`;
   box.appendChild(row);
  });
  box.querySelectorAll('[data-done]').forEach(b=>b.onclick=async()=>{const r=list.find(x=>x.id===b.dataset.done);doneMap[r.id]=ymd(r.next);await persist();renderReminders();toast(r.repeat==='none'?'Marked done':'Done — next one scheduled');});
  box.querySelectorAll('[data-open]').forEach(b=>b.onclick=()=>viewEntry(b.dataset.open));
+ box.querySelectorAll('[data-ics]').forEach(b=>b.onclick=()=>{const r=list.find(x=>x.id===b.dataset.ics);if(r)exportICS([r],'finvault-'+slug(r.title)+'.ics');});
  box.querySelectorAll('[data-editrem]').forEach(b=>b.onclick=()=>openReminder(b.dataset.editrem));
 }
 function openReminder(id=null){
  const old=id?reminders.find(r=>r.id===id):null;
- modal(`<div class="modal-head"><h2>${old?'Edit reminder':'Add reminder'}</h2><button class="close" id="modalClose" type="button">×</button></div><form id="remForm"><div class="form-grid"><div class="field span2"><label for="remTitle">Title *</label><input id="remTitle" required maxlength="100" placeholder="e.g. Pay electricity bill" value="${escapeHTML(old?.title||'')}"></div><div class="field"><label for="remDate">Date *</label><input id="remDate" type="date" required value="${escapeHTML(old?.date||ymd(todayD()))}"></div><div class="field"><label for="remRepeat">Repeat</label><select id="remRepeat">${[['none','Does not repeat'],['monthly','Every month'],['yearly','Every year']].map(([v,t])=>`<option value="${v}" ${(old?.repeat||'none')===v?'selected':''}>${t}</option>`).join('')}</select></div><div class="field span2"><label for="remBefore">Remind me</label><select id="remBefore">${BEFORE.map(([v,t])=>`<option value="${v}" ${(old?old.before:1)===v?'selected':''}>${t}</option>`).join('')}</select></div><div class="field span2"><label for="remNote">Note (optional)</label><textarea id="remNote" maxlength="500" style="min-height:70px">${escapeHTML(old?.note||'')}</textarea></div></div><div class="modal-actions">${old?'<button type="button" class="danger" id="delRem" style="margin-right:auto">Delete</button>':''}<button type="button" class="secondary" id="cancelEntry">Cancel</button><button type="submit" class="primary">Save reminder</button></div></form>`);
+ modal(`<div class="modal-head"><h2>${old?'Edit reminder':'Add reminder'}</h2><button class="close" id="modalClose" type="button">×</button></div><form id="remForm"><div class="form-grid"><div class="field span2"><label for="remTitle">Title *</label><input id="remTitle" required maxlength="100" placeholder="e.g. Pay electricity bill" value="${escapeHTML(old?.title||'')}"></div><div class="field"><label for="remDate">Date *</label><input id="remDate" type="date" required value="${escapeHTML(old?.date||ymd(todayD()))}"></div><div class="field"><label for="remRepeat">Repeat</label><select id="remRepeat">${[['none','Does not repeat'],['monthly','Every month'],['yearly','Every year']].map(([v,t])=>`<option value="${v}" ${(old?.repeat||'none')===v?'selected':''}>${t}</option>`).join('')}</select></div><div class="field span2"><label for="remBefore">Remind me</label><select id="remBefore">${BEFORE.map(([v,t])=>`<option value="${v}" ${(old?old.before:1)===v?'selected':''}>${t}</option>`).join('')}</select></div><div class="field span2"><label for="remNote">Note (optional)</label><textarea id="remNote" maxlength="500" style="min-height:70px">${escapeHTML(old?.note||'')}</textarea></div></div><div class="modal-actions"><button type="button" class="secondary" id="cancelEntry">Cancel</button><button type="submit" class="primary">Save reminder</button></div>${old?'<button type="button" class="danger btn-block" id="delRem">Delete reminder</button>':''}</form>`);
  $('modalClose').onclick=closeModal;$('cancelEntry').onclick=closeModal;
  $('remForm').onsubmit=async e=>{e.preventDefault();const rem={id:old?.id||crypto.randomUUID(),title:$('remTitle').value.trim(),date:$('remDate').value,repeat:$('remRepeat').value,before:Number($('remBefore').value),note:$('remNote').value.trim()};if(!rem.title||!validDate(rem.date))return;if(old){if(old.date!==rem.date)delete doneMap[rem.id];reminders=reminders.map(r=>r.id===rem.id?rem:r);}else reminders.push(rem);for(const k of [...notified])if(k.startsWith(rem.id+'|'))notified.delete(k);await persist();closeModal();renderReminders();checkDue();toast('Reminder saved');};
- if(old)$('delRem').onclick=async()=>{if(!confirm('Delete this reminder?'))return;reminders=reminders.filter(r=>r.id!==old.id);delete doneMap[old.id];await persist();closeModal();renderReminders();toast('Reminder deleted');};
+ if(old)$('delRem').onclick=async()=>{if(!(await confirmDialog({title:'Delete permanently?',message:`“${old.title}” will be permanently deleted. This can’t be undone.`})))return;reminders=reminders.filter(r=>r.id!==old.id);delete doneMap[old.id];await persist();closeModal();renderReminders();toast('Reminder deleted');};
 }
 async function enableNotifications(){if(!('Notification' in window)){toast('Notifications are not supported in this browser');return;}const p=await Notification.requestPermission();toast(p==='granted'?'Notifications enabled':'Notifications were not allowed');renderProfile();}
 
@@ -335,20 +405,25 @@ function installPanel(){
 function renderProfile(){
  const th=getTheme(),perm='Notification' in window?Notification.permission:'unsupported';
  const permText=perm==='granted'?'✓ Notifications are on':perm==='denied'?'Blocked — allow notifications in your browser/site settings':perm==='unsupported'?'Not supported in this browser':'Not enabled yet';
+ const stale=records.length>0&&(!settings.lastBackup||Date.now()-settings.lastBackup>7*864e5);const lastTxt=settings.lastBackup?'Last backup: '+new Date(settings.lastBackup).toLocaleDateString(undefined,{day:'numeric',month:'short',year:'numeric'})+' ('+ago(settings.lastBackup)+')':'No backup yet';const opts=(list,cur)=>list.map(([v,t])=>`<option value="${v}" ${Number(cur)===v?'selected':''}>${t}</option>`).join('');
  const root=$('profileView');
  root.innerHTML=`<div class="page-head"><button class="secondary" id="profBack" type="button">← Back</button><h1>Profile</h1><span></span></div><p class="page-sub">Your details, appearance and security.</p><div class="panels">
  <section class="panel"><div class="profile-head"><div class="avatar big">${escapeHTML((userName[0]||'A').toUpperCase())}</div><div><strong>${escapeHTML(userName)}</strong><div class="hint">${escapeHTML(profile.email||'Add your details below')}</div></div></div><form id="profileForm"><div class="field"><label for="pName">Full name</label><input id="pName" maxlength="60" value="${escapeHTML(userName==='there'?'':userName)}"></div><div class="field"><label for="pEmail">Email</label><input id="pEmail" type="email" maxlength="100" autocomplete="email" value="${escapeHTML(profile.email||'')}"></div><div class="field"><label for="pMobile">Mobile number</label><input id="pMobile" type="tel" maxlength="20" autocomplete="tel" value="${escapeHTML(profile.mobile||'')}"></div><div class="field"><label for="pDob">Date of birth</label><input id="pDob" type="date" value="${escapeHTML(profile.dob||'')}"></div><button class="primary" type="submit">Save profile</button></form></section>
  <div style="display:grid;gap:16px">
  <section class="panel"><h3>Appearance</h3><div class="seg" id="themeSeg">${[['light','☀ Light'],['dark','● Black'],['auto','Auto']].map(([v,t])=>`<button type="button" data-theme="${v}" class="${th===v?'active':''}">${t}</button>`).join('')}</div><p>Black uses a pure-black background — easy on the eyes and saves battery on OLED screens. Auto follows your device setting.</p></section>
- <section class="panel"><h3>Reminders</h3><div class="field" style="margin-top:0"><label for="pAlert">Alert for entry dates (payment / maturity)</label><select id="pAlert">${BEFORE.map(([v,t])=>`<option value="${v}" ${Number(settings.alertDays)===v?'selected':''}>${t}</option>`).join('')}</select></div><p>${permText}. Alerts appear when the app is open; keep it installed and open it daily. Notifications show reminder titles only.</p>${perm==='default'?'<div class="btn-row"><button class="secondary" id="enableNotif" type="button">Enable notifications</button></div>':''}</section>
- <section class="panel"><h3>Security &amp; data</h3><div class="btn-row"><button class="secondary" id="pExport" type="button">Export backup</button><button class="secondary" id="pImport" type="button">Import backup</button><button class="secondary" id="pChangePw" type="button">Change master password</button></div><p>${records.length} entries · ${reminders.length} custom reminders. Backups keep your data encrypted with your master password; attached images are included unencrypted.</p></section>
+ <section class="panel"><h3>Reminders</h3><div class="field" style="margin-top:0"><label for="pAlert">Alert for entry dates (payment / maturity)</label><select id="pAlert">${BEFORE.map(([v,t])=>`<option value="${v}" ${Number(settings.alertDays)===v?'selected':''}>${t}</option>`).join('')}</select></div><p>${permText}. Alerts appear while the app is open. For alerts when it is closed, use <b>📅 Add to calendar</b> on the Reminders page.</p>${perm==='default'?'<div class="btn-row"><button class="secondary" id="enableNotif" type="button">Enable notifications</button></div>':''}</section>
+ <section class="panel"><h3>Security</h3><div class="field" style="margin-top:0"><label for="pAutoLock">Auto-lock after inactivity</label><select id="pAutoLock">${opts([[1,'1 minute'],[5,'5 minutes'],[15,'15 minutes'],[0,'Never']],settings.autoLock)}</select></div><div class="field"><label for="pLeave">When I switch away from the app</label><select id="pLeave">${opts([[0,'Lock immediately'],[30,'Lock after 30 seconds'],[60,'Lock after 1 minute'],[-1,"Don't lock"]],settings.leaveLock)}</select></div><div class="field"><label for="pClip">Clear copied passwords &amp; card numbers</label><select id="pClip">${opts([[15,'After 15 seconds'],[30,'After 30 seconds'],[60,'After 1 minute'],[0,'Never']],settings.clipClear)}</select></div><p>Clipboard clearing can be blocked by iPhone Safari, which only lets a page write to the clipboard right after a tap.</p><div class="btn-row"><button class="secondary" id="pChangePw" type="button">Change master password</button></div></section>
+ <section class="panel"><h3>Backup &amp; data</h3><p><span class="pill ${stale?'soon':''}">${lastTxt}</span></p><div class="btn-row"><button class="primary" id="pExport" type="button">Export backup</button><button class="secondary" id="pImport" type="button">Import backup</button></div><p>On phones this opens the share sheet — choose <b>Save to Files</b> (iCloud Drive) or Drive. ${records.length} entries · ${reminders.length} custom reminders. The vault stays encrypted with your master password; attached images are included unencrypted.</p><div style="border-top:1px solid var(--line);margin-top:12px;padding-top:12px"><strong>Storage protection</strong><p id="persistStatus" style="margin:4px 0">Checking…</p><div class="btn-row"><button class="secondary hidden" id="pPersist" type="button">Request protection</button></div></div></section>
  <section class="panel"><h3>Install app</h3>${installPanel()}</section></div></div><button class="danger logout" id="pLogout" type="button">Logout</button>`;
  $('profBack').onclick=()=>setView('vault');
  $('profileForm').onsubmit=async e=>{e.preventDefault();userName=$('pName').value.trim()||'there';profile={email:$('pEmail').value.trim(),mobile:$('pMobile').value.trim(),dob:$('pDob').value};await persist();updateAvatar();renderProfile();toast('Profile saved');};
  $('themeSeg').querySelectorAll('[data-theme]').forEach(b=>b.onclick=()=>{applyTheme(b.dataset.theme);renderProfile();});
  $('pAlert').onchange=async()=>{settings.alertDays=Number($('pAlert').value);await persist();checkDue();toast('Saved');};
  if($('enableNotif'))$('enableNotif').onclick=enableNotifications;
- $('pExport').onclick=exportBackup;$('pImport').onclick=()=>$('importFile').click();$('pChangePw').onclick=openChangePassword;$('pLogout').onclick=lockApp;
+ $('pExport').onclick=exportBackup;$('pImport').onclick=()=>{suspendLock(120000);$('importFile').click();};$('pChangePw').onclick=openChangePassword;$('pLogout').onclick=()=>lockApp();
+ [['pAutoLock','autoLock'],['pLeave','leaveLock'],['pClip','clipClear']].forEach(([id,k])=>{$(id).onchange=async()=>{settings[k]=Number($(id).value);await persist();touch();toast('Saved');};});
+ persistState().then(st=>{const el=$('persistStatus');if(!el)return;el.textContent=st==='on'?'✓ Protected — the browser will not clear your vault automatically when storage is low.':st==='off'?'Not granted — the browser may clear data when space is low. Install the app, use it regularly, then tap Request.':'Not supported in this browser.';if(st==='off')$('pPersist').classList.remove('hidden');});
+ $('pPersist').onclick=async()=>{const ok=await requestPersist();toast(ok?'Storage protected':'The browser did not grant it');renderProfile();};
  if($('installBtn'))$('installBtn').onclick=doInstall;
 }
 function openChangePassword(){
@@ -360,10 +435,95 @@ function openChangePassword(){
 }
 
 /* ---------- backup ---------- */
-async function exportBackup(){try{const meta=await dbGet();if(!meta){toast('No saved vault found');return;}const images=await imgAll();const blob=new Blob([JSON.stringify({app:'FinVault',format:1,exportedAt:new Date().toISOString(),vault:meta,images},null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='finvault-encrypted-backup.json';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);toast('Encrypted backup exported');}catch(e){toast('Could not export backup');}}
+const ago=ts=>{const d=Math.floor((Date.now()-ts)/864e5);return d<1?'today':d===1?'yesterday':d+' days ago';};
+const slug=s=>String(s).toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,40)||'reminder';
+const coarse=()=>matchMedia('(pointer:coarse)').matches;
+
+/* auto-lock */
+let lastActive=Date.now(),hiddenAt=0,suspendUntil=0,lockTick=null;
+const suspendLock=ms=>{suspendUntil=Date.now()+ms;};
+const touch=()=>{lastActive=Date.now();};
+['pointerdown','keydown','touchstart','scroll','input'].forEach(ev=>addEventListener(ev,touch,{passive:true,capture:true}));
+function startLockTimer(){clearInterval(lockTick);lastActive=Date.now();lockTick=setInterval(()=>{if(!key)return;const m=Number(settings.autoLock)||0;if(m&&Date.now()>suspendUntil&&Date.now()-lastActive>m*60000)lockApp('Locked after '+m+' minute'+(m>1?'s':'')+' of inactivity.');},10000);}
+
+/* persistent storage */
+async function requestPersist(){try{if(navigator.storage?.persist){if(await navigator.storage.persisted())return true;return await navigator.storage.persist();}}catch{}return false;}
+async function persistState(){try{if(!navigator.storage?.persisted)return 'unsupported';return (await navigator.storage.persisted())?'on':'off';}catch{return 'unsupported';}}
+
+/* file delivery: share sheet on phones (Save to Files / iCloud Drive), download elsewhere */
+async function deliverFile(file,allowShare=true){
+ if(allowShare&&coarse()&&navigator.canShare&&navigator.canShare({files:[file]})){
+  suspendLock(120000);
+  try{await navigator.share({files:[file],title:file.name});return 'shared';}
+  catch(e){if(e&&e.name==='AbortError')return 'cancelled';}
+ }
+ const url=URL.createObjectURL(file);const a=document.createElement('a');a.href=url;a.download=file.name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),5000);return 'downloaded';
+}
+async function exportBackup(){
+ try{const meta=await dbGet();if(!meta){toast('No saved vault found');return;}
+  const images=await imgAll();
+  const json=JSON.stringify({app:'FinVault',format:1,exportedAt:new Date().toISOString(),vault:meta,images},null,2);
+  const file=new File([json],'finvault-backup-'+ymd(new Date())+'.json',{type:'application/json'});
+  const r=await deliverFile(file);if(r==='cancelled')return;
+  settings.lastBackup=Date.now();await persist();
+  toast(r==='shared'?'Backup shared — check it was saved to Files':'Encrypted backup downloaded');
+  if(view==='profile')renderProfile();else if(view==='vault')render();
+ }catch(e){console.error(e);toast('Could not export backup');}
+}
+
+/* calendar (.ics): stable UID per reminder + rising SEQUENCE, so re-importing updates the existing event */
+const icsEsc=s=>String(s??'').replace(/\\/g,'\\\\').replace(/;/g,'\;').replace(/,/g,'\\,').replace(/\r?\n/g,'\\n');
+const icsFold=l=>{const out=[];let t=l;while(t.length>70){out.push(t.slice(0,70));t=' '+t.slice(70);}out.push(t);return out.join('\r\n');};
+const icsDay=d=>d.getFullYear()+pad(d.getMonth()+1)+pad(d.getDate());
+const icsStamp=d=>d.getUTCFullYear()+pad(d.getUTCMonth()+1)+pad(d.getUTCDate())+'T'+pad(d.getUTCHours())+pad(d.getUTCMinutes())+pad(d.getUTCSeconds())+'Z';
+const icsUid=id=>'fv-'+String(id).replace(/[^A-Za-z0-9-]+/g,'-')+'@finvault.local';
+function icsEvent(r,now,seq){
+ const day=icsDay(r.next),before=Number(r.before)||0;
+ const L=['BEGIN:VEVENT','UID:'+icsUid(r.id),'DTSTAMP:'+icsStamp(now),'LAST-MODIFIED:'+icsStamp(now),'SEQUENCE:'+seq,'DTSTART:'+day+'T090000','DTEND:'+day+'T093000','SUMMARY:'+icsEsc(r.title),'DESCRIPTION:'+icsEsc([r.note,'From FinVault'].filter(Boolean).join('\n'))];
+ if(r.repeat==='monthly')L.push('RRULE:FREQ=MONTHLY');else if(r.repeat==='yearly')L.push('RRULE:FREQ=YEARLY');
+ L.push('TRANSP:TRANSPARENT');
+ if(before>0)L.push('BEGIN:VALARM','ACTION:DISPLAY','DESCRIPTION:'+icsEsc(r.title),'TRIGGER:-P'+before+'D','END:VALARM');
+ L.push('BEGIN:VALARM','ACTION:DISPLAY','DESCRIPTION:'+icsEsc(r.title),'TRIGGER:PT0S','END:VALARM','END:VEVENT');
+ return L;
+}
+function buildICS(list,now=new Date()){
+ const seq=Math.floor(now.getTime()/1000);
+ const L=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//FinVault//Reminders//EN','CALSCALE:GREGORIAN','METHOD:PUBLISH','X-WR-CALNAME:FinVault reminders'];
+ list.forEach(r=>L.push(...icsEvent(r,now,seq)));L.push('END:VCALENDAR');
+ return L.map(icsFold).join('\r\n')+'\r\n';
+}
+async function exportICS(list,name){
+ if(!list.length){toast('Nothing to add');return;}
+ const file=new File([buildICS(list)],name,{type:'text/calendar'});
+ const r=await deliverFile(file,false);
+ if(r!=='cancelled')toast('Calendar file ready — open it to add '+(list.length>1?list.length+' reminders':'the reminder'));
+}
+
+/* image viewer */
+let vwList=[],vwIdx=0;
+function showViewer(){const v=$('viewer');v.classList.remove('zoom');$('vwImg').src=vwList[vwIdx];$('vwImg').alt='Image '+(vwIdx+1);$('vwCount').textContent=(vwIdx+1)+' / '+vwList.length;const many=vwList.length>1;$('vwPrev').classList.toggle('hidden',!many);$('vwNext').classList.toggle('hidden',!many);$('vwStage').scrollTo(0,0);}
+let vwTimer=null;
+function openViewer(list,i){clearTimeout(vwTimer);vwList=list.slice();vwIdx=i;$('viewer').classList.remove('hidden','closing');lockPage(true);showViewer();}
+function closeViewer(now){const v=$('viewer');if(v.classList.contains('hidden'))return;clearTimeout(vwTimer);const fin=()=>{v.classList.add('hidden');v.classList.remove('zoom','closing');$('vwImg').removeAttribute('src');vwList=[];syncLock();};if(now===true||reduceMotion()){fin();return;}v.classList.add('closing');vwTimer=setTimeout(fin,240);}
+function stepViewer(d){if(vwList.length<2)return;vwIdx=(vwIdx+d+vwList.length)%vwList.length;showViewer();}
+$('vwClose').onclick=closeViewer;$('vwPrev').onclick=()=>stepViewer(-1);$('vwNext').onclick=()=>stepViewer(1);
+$('vwImg').onclick=()=>$('viewer').classList.toggle('zoom');
+$('vwStage').onclick=e=>{if(e.target===$('vwStage'))closeViewer();};
+let vwX=0;$('vwStage').addEventListener('touchstart',e=>{vwX=e.touches[0].clientX;},{passive:true});
+$('vwStage').addEventListener('touchend',e=>{if($('viewer').classList.contains('zoom'))return;const dx=e.changedTouches[0].clientX-vwX;if(Math.abs(dx)>60)stepViewer(dx<0?1:-1);},{passive:true});
+
+/* card face */
+const NETS={Visa:'#1a3a8f',Mastercard:'#b3361f',RuPay:'#0b7a4b',Amex:'#1b6fa8'};
+function cardFace(r){
+ const f=r.fields||{},type=f['Card Type'],num=f['Card Number']?String(f['Card Number']).replace(/\s/g,''):'',last=num.slice(-4);
+ const dots=num?(num.length===15?'•••• •••••• •'+last:'•••• •••• •••• '+last):'•••• •••• •••• ••••';
+ const exp=f['Expiry Month']&&f['Expiry Year']?f['Expiry Month']+'/'+String(f['Expiry Year']).slice(-2):'—';
+ const color=catColor(r);
+ return `<div class="cardface" style="--cf:${color}"><div class="cf-top"><div><span class="cf-bank">${escapeHTML(f['Bank Name']||r.category)}</span><span class="cf-kind">${r.category==='Credit cards'?'CREDIT CARD':'DEBIT CARD'}${f['Co Issuer Name']?' · '+escapeHTML(f['Co Issuer Name']):''}</span></div>${type?`<span class="cf-net" style="--net:${NETS[type]||'#333'}">${escapeHTML(type)}</span>`:''}</div><div class="cf-chip"></div><div class="cf-num">${dots}</div><div class="cf-bot"><div><small>CARD HOLDER</small><b>${escapeHTML(f['Card Holder Name']||'—')}</b></div><div><small>VALID THRU</small><b>${escapeHTML(exp)}</b></div></div></div>`;
+}
 async function importBackup(file){
  try{const obj=JSON.parse(await file.text());if(obj.app!=='FinVault'||!obj.vault?.cipher||!obj.vault?.salt){toast('This is not a valid FinVault backup');return;}
-  if(await dbGet()&&!confirm('Replace the vault currently saved on this device? Export a backup first if needed.'))return;
+  if(await dbGet()&&!(await confirmDialog({title:'Replace current vault?',message:'The vault saved on this device will be permanently replaced by this backup. Export a backup first if you need it.',ok:'Replace vault'})))return;
   await dbPut(obj.vault);await imgReplaceAll(Array.isArray(obj.images)?obj.images.filter(x=>x&&x.id&&Array.isArray(x.images)):[]);hasVault=true;lockApp();toast('Backup imported. Sign in with its original master password.');
  }catch(e){toast('Could not read this backup file');}finally{$('importFile').value='';}
 }
