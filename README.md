@@ -211,7 +211,9 @@ A web app that isn't running can't wake itself up, so in-app alerts fire **only 
 FinVault is a handful of static files — no build step.
 
 ```
-index.html
+index.html      (page structure)
+css/style.css   (all styling)
+js/app.js       (all app logic)
 manifest.webmanifest
 sw.js
 icon-192.png
