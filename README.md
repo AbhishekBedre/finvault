@@ -120,7 +120,8 @@ There is **no "forgot password"**. The master password is the encryption key. If
 | Entries, reminders, profile, settings | IndexedDB (`vaults`) | ✅ Yes |
 | **Attached images** (card photos, documents) | IndexedDB (`images`) as base64 | ❌ **No** — stored as plain image data |
 | Theme choice (light / black / auto) | localStorage | ❌ No (harmless preference) |
-| App files (HTML, icons) | Service-worker cache | ❌ No (just the public app code) |
+| App files (HTML, icons, card-reader files) | Service-worker cache | ❌ No (just the public app code) |
+| Card photo used for **Scan** | Not stored (read in memory, then dropped) | n/a — unless you tick *Keep this photo*, then ❌ unencrypted like other images |
 | **Backup file** (`.json`) | Wherever you save it | Vault part ✅ encrypted; **images inside it ❌ not encrypted** |
 
 > **Don't attach images of sensitive documents unless you're comfortable with that.** A photo of a card front/back or a cheque attached to an entry is saved unencrypted on the device and in backup files. Anyone who gets that backup file can see the images (but not your text data).
@@ -132,6 +133,9 @@ Being honest about the limits:
 - **Someone looking over your shoulder** while the vault is unlocked.
 - **A phone left unlocked** — FinVault's own lock helps, but also use your device passcode / biometrics.
 - This is a personal, open-source project and **has not been independently security-audited.**
+
+### A word of caution on sharing
+The **Share** feature sends details as **plain text** through whatever app you pick. WhatsApp, SMS and other chat apps keep messages in chat history and in cloud backups, and SMS is not encrypted. CVV, PIN and password rows start **unticked**, are marked ⚠, and need an extra confirmation — but once sent, FinVault can no longer protect them. Only share secrets with people you trust, and delete the message afterwards.
 
 ### A word of caution on what you store
 Think twice before storing **full card numbers together with CVV and PIN**. Anyone who obtains them together can spend your money. Consider storing only what you really need to look up. Never store OTPs.
@@ -159,6 +163,8 @@ Importing **replaces** the vault on that device — it is a copy, not a merge. I
 - **Images:** attach photos to any entry; tap to view full-screen, swipe, and zoom.
 - **Reminders (dates only):** payment dates (monthly) and FD / bond maturity dates are added automatically; add your own one-time, monthly or yearly reminders with "remind me N days before".
 - **Add to calendar (.ics):** export a reminder (or all of them) to your phone's calendar for alerts even when the app is closed. Download again after editing and your calendar updates the same event.
+- **Share details (WhatsApp / SMS / anything):** open an entry, tap **Share** (on desktop: **Copy details**), tick exactly the rows you want, check the live preview, and send. On a phone the details are copied to the clipboard *and* the share sheet opens; on a computer they are just copied so you can paste them anywhere. Card and account numbers are sent as one continuous number.
+- **Scan a card (credit / debit cards):** in the card form tap **Take photo** (phones) or **Choose / drop an image** (desktop). Text is read **on your device** and fills the card number (check-digit verified), expiry, holder name, network, bank and — only if the card prints it with a label — CVV. Scanned fields are highlighted; always check them against the card. The photo is **discarded** unless you tick **Keep this photo** (a kept photo is stored unencrypted like any attached image). The first scan loads a ~11 MB reader once; it then works offline.
 - **Search**, sort, category filters, copy-to-clipboard, show/hide sensitive values.
 - **Profile page** with basic user details, **Light / Black / Auto theme**, security settings and backup tools.
 - **Installable & offline:** works without internet after the first load.
@@ -194,7 +200,11 @@ icon-192.png
 icon-512.png
 icon-maskable-512.png
 apple-touch-icon.png
+ocr/            (card scanner, ~11 MB: tesseract.min.js, worker.min.js,
+                 core/*.wasm.js, lang/eng.traineddata.gz, LICENSES.txt)
 ```
+
+Keep the whole `ocr/` folder together with its sub-folders. Without it everything works except **Scan card**.
 
 1. Put all the files in the root of a GitHub repository (e.g. `finvault`).
 2. **Settings → Pages → Deploy from a branch → `main` / root.**
@@ -203,6 +213,12 @@ apple-touch-icon.png
 It must be served over **HTTPS** (GitHub Pages does this) or from `localhost` — the browser's encryption and install features don't work on plain HTTP. To run locally: `python3 -m http.server 8000`, then open `http://localhost:8000`.
 
 > Important: a vault is tied to the **exact address (origin)** it was created on. `https://AbhishekBedre.github.io` and `http://localhost:8000` — or a different username/domain — are **different storage areas** and cannot see each other's data. If you move to a new address, export a backup first and import it there.
+
+---
+
+## Open-source credits
+
+Card scanning uses [Tesseract.js](https://github.com/naptha/tesseract.js) and Tesseract OCR (Apache-2.0), bundled in `ocr/` and run entirely in your browser. Licence text is in `ocr/LICENSES.txt`.
 
 ---
 

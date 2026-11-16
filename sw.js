@@ -1,4 +1,4 @@
-const CACHE = 'finvault-v7';
+const CACHE = 'finvault-v9';
 const ASSETS = ['./', './index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png', './icon-maskable-512.png', './apple-touch-icon.png'];
 
 self.addEventListener('install', e => {
@@ -18,6 +18,14 @@ self.addEventListener('fetch', e => {
   const req = e.request;
   if (req.method !== 'GET') return;
   if (new URL(req.url).origin !== location.origin) return;
+  // The OCR engine is ~11 MB and never changes: serve from cache, fetch once.
+  if (new URL(req.url).pathname.includes('/ocr/')) {
+    e.respondWith(caches.match(req).then(m => m || fetch(req).then(res => {
+      if (res.ok) { const copy = res.clone(); caches.open(CACHE).then(c => c.put(req, copy)); }
+      return res;
+    })));
+    return;
+  }
   e.respondWith(
     fetch(req)
       .then(res => {
