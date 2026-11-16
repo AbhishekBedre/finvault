@@ -39,6 +39,24 @@ You can also skip installing and simply use it in a browser tab. Installing just
 
 ---
 
+## Screenshots
+
+> All data below is **fake sample data** (a test card number and a made-up name), shown only to illustrate the app.
+
+| Home | Swipe left on a card | View details | Share details |
+|:---:|:---:|:---:|:---:|
+| <img src="screenshots/01-home.png" width="190" alt="Home screen with entry cards"> | <img src="screenshots/02-swipe-actions.png" width="190" alt="Swipe left on a card for Copy, Edit and Delete"> | <img src="screenshots/03-view-details.png" width="190" alt="View details sheet with a card face"> | <img src="screenshots/04-share.png" width="190" alt="Choose which fields to share"> |
+
+| Scan a card | Reminders | Black theme | |
+|:---:|:---:|:---:|:---:|
+| <img src="screenshots/05-scan-card.png" width="190" alt="Card scan filling the form"> | <img src="screenshots/06-reminders.png" width="190" alt="Reminders list"> | <img src="screenshots/07-profile-dark.png" width="190" alt="Profile page in the Black theme"> | |
+
+**On a laptop or desktop:**
+
+<img src="screenshots/08-desktop.png" width="720" alt="FinVault on a desktop browser">
+
+---
+
 ## ⚠️ Read this first: where your data lives
 
 FinVault has **no backend**. Everything you enter is stored **inside your browser, on the device you are using** (in the browser's IndexedDB storage for this site).
@@ -203,6 +221,8 @@ apple-touch-icon.png
 ocr/            (card scanner, ~11 MB: tesseract.min.js, worker.min.js,
                  core/*.wasm.js, lang/eng.traineddata.gz, LICENSES.txt)
 ```
+
+`screenshots/` is only used by this README on GitHub; the app itself doesn't need it, so you can leave it out of a copy.
 
 Keep the whole `ocr/` folder together with its sub-folders. Without it everything works except **Scan card**.
 
